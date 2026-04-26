@@ -1,179 +1,175 @@
 "use client";
 
 import { ModuleTitle } from "@/components/common/ModuleTitle";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useState } from "react";
 
-const STEP_INDICATOR_COUNT = 3;
-
-const processSteps = [
+const services = [
   {
-    id: 1,
-    title: "Discover",
-    subtitle: "Clarity From the Start",
-    description:
-      "We begin with a focused call to understand your goals, users, and product direction. This gives us shared direction before design or development begins.",
-    image: "/assets/img/bg/Discover.webp",
+    name: "Research And Strategy",
+    preview: "Market insights and positioning blueprint",
+    imageSrc: "/assets/img/service/services-reference.png",
   },
   {
-    id: 2,
-    title: "Design & Build",
-    subtitle: "One Team. One Execution Flow.",
-    description:
-      "Design and development move forward within one team, working in parallel from the start. This reduces handoffs, shortens feedback cycles, and keeps delivery consistent.",
-    image: "/assets/img/bg/Design & Build.webp",
+    name: "Corporate Identity",
+    preview: "Brand tone, visual language, and identity system",
+    imageSrc: "/assets/img/service/uiux.webp",
   },
   {
-    id: 3,
-    title: "Launch & Scale",
-    subtitle: "Built to Grow Beyond Day One",
-    description:
-      "Following launch, the product is refined through structured updates and ongoing improvements to support long-term progress.",
-    image: "/assets/img/bg/Launch & Scale.webp",
+    name: "UX/UI Design",
+    preview: "Product UX flows and conversion-focused interfaces",
+    imageSrc: "/assets/img/service/mobile-app.webp",
   },
   {
-    id: 1,
-    title: "Discover",
-    subtitle: "Clarity From the Start",
-    description:
-      "We begin with a focused call to understand your goals, users, and product direction. This gives us shared direction before design or development begins.",
-    image: "/assets/img/bg/Discover.webp",
+    name: "Design Support",
+    preview: "Creative production support for growth teams",
+    imageSrc: "/assets/img/service/web-app.webp",
   },
   {
-    id: 2,
-    title: "Design & Build",
-    subtitle: "One Team. One Execution Flow.",
-    description:
-      "Design and development move forward within one team, working in parallel from the start. This reduces handoffs, shortens feedback cycles, and keeps delivery consistent.",
-    image: "/assets/img/bg/Design & Build.webp",
+    name: "PPC Marketing",
+    preview: "Campaign structure, creatives, and optimization",
+    imageSrc: "/assets/img/service/full-stack-development.webp",
   },
-  {
-    id: 3,
-    title: "Launch & Scale",
-    subtitle: "Built to Grow Beyond Day One",
-    description:
-      "Following launch, the product is refined through structured updates and ongoing improvements to support long-term progress.",
-    image: "/assets/img/bg/Launch & Scale.webp",
+] as const;
+
+const listContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.15,
+    },
   },
-];
+};
 
-/** Scroll progress [start, end] per card: bottom → row, left → right order. Windows overlap slightly for a cascade. */
-const CARD_ENTER: readonly [number, number][] = [
-  [0.05, 0.26],
-  [0.14, 0.36],
-  [0.24, 0.46],
-];
-
-/**
- * Match reference: vertical gradient, strong hue at bottom, almost white at top.
- * CSS `to top` → first stops = bottom, last = top.
- */
-const CARD_BG_GRADIENT: readonly string[] = [
-  "linear-gradient(to top, #ff4d29 0%, #ff4d29 12%, #ffffff08 50%, #ffffff08 80%, #ffffff08 100%)",
-  "linear-gradient(to top, #5020AC 0%, #5020AC 12%, #ffffff08 50%, #ffffff08 78%, #ffffff08 100%)",
-  "linear-gradient(to top, #fbc02d 0%, #fbc02d 12%, #ffffff08 50%, #ffffff08 78%, #ffffff08 100%)",
-];
-
-function ProcessStepCard({
-  step,
-  idx,
-  scrollYProgress,
-}: {
-  step: (typeof processSteps)[number];
-  idx: number;
-  scrollYProgress: MotionValue<number>;
-}) {
-  const [tStart, tEnd] = CARD_ENTER[idx] ?? [0, 0.3];
-  const fadeEnd = Math.min(tStart + 0.1, tEnd);
-
-  const opacity = useTransform(
-    scrollYProgress,
-    [tStart, fadeEnd, 1],
-    [0, 1, 1],
-  );
-
-  /** Bottom → final row: large positive y, then clamp at 0 (three keyframes). */
-  const y = useTransform(scrollYProgress, [tStart, tEnd, 1], [120, 0, 0]);
-
-  const cardBg = CARD_BG_GRADIENT[idx] ?? CARD_BG_GRADIENT[0];
-
-  return (
-    <motion.div
-      style={{
-        opacity,
-        y,
-        willChange: "transform, opacity",
-        background: cardBg,
-      }}
-      className="flex min-h-full min-w-0 flex-col rounded-3xl p-6 pb-0 md:h-[530px] md:p-8 md:pb-0 overflow-hidden"
-    >
-      <div className="flex items-start justify-between gap-2">
-        <span className="text-h4 font-bold uppercase opacity-40">
-          0{idx + 1}
-        </span>
-
-        <div className="flex items-center gap-1.5">
-          {Array.from({ length: STEP_INDICATOR_COUNT }).map((_, i) => (
-            <span
-              key={i}
-              className={`text-lg ${i <= idx ? "text-title" : "text-title/30"}`}
-              aria-hidden
-            >
-              +
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <h4 className="mb-4 mt-3 text-theme">{step.title}</h4>
-
-      <p className="flex-1 text-base leading-relaxed text-desc">
-        {step.description}
-      </p>
-      <Image
-        src={step.image}
-        alt={step.title}
-        width={420}
-        height={300}
-        className="mt-8 w-full  object-cover"
-      />
-    </motion.div>
-  );
-}
+const listItem = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export default function Services() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    /** Tuned so cards settle into the row while the block is near the viewport center. */
-    offset: ["start 0.80", "end 0.10"],
-  });
+  const [activeServiceIdx, setActiveServiceIdx] = useState(0);
+  const activeService = services[activeServiceIdx] ?? services[0];
 
   return (
-    <section ref={sectionRef} className="relative space ">
+    <section className="space">
       <div className="container">
         <ModuleTitle
-          suppertitle="Workflow Process"
-          title="Our 3-step sprint  **gets you to launch — fast.**"
+          suppertitle="What We Do"
+          title="Creative services that **drive growth**"
           variant="v1"
         />
-        {/* md+: 3 equal columns in one row; sm: stack with same scroll animation */}
-        <div className="grid w-full grid-cols-1 items-stretch gap-6 sm:gap-5 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-6">
-          {processSteps.map((step, idx) => (
-            <ProcessStepCard
-              key={step.id}
-              step={step}
-              idx={idx}
-              scrollYProgress={scrollYProgress}
-            />
-          ))}
+
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <div className="relative mx-auto w-full h-[550px] -rotate-4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeService.imageSrc}
+                  initial={{ opacity: 0, scale: 1.08, x: 30 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 1.03, x: -30 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={activeService.imageSrc}
+                    alt={activeService.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-black/20"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <motion.div
+              className="w-full"
+              variants={listContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              {services.map((service, idx) => {
+                const isActive = idx === activeServiceIdx;
+                return (
+                  <motion.button
+                    type="button"
+                    key={service.name}
+                    onMouseEnter={() => setActiveServiceIdx(idx)}
+                    onFocus={() => setActiveServiceIdx(idx)}
+                    onClick={() => setActiveServiceIdx(idx)}
+                    variants={listItem}
+                    whileHover={{ x: 6 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 24 }}
+                    className={`group relative flex w-full items-center justify-between overflow-hidden border-b border-border/10 px-5 py-5 text-left sm:px-6 sm:py-6 cursor-pointer ${
+                      isActive ? "text-black" : ""
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeServiceRow"
+                        className="absolute inset-0 bg-theme"
+                        transition={{
+                          type: "spring",
+                          stiffness: 320,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+
+                    <div className="flex items-center gap-5 sm:gap-7">
+                      <motion.span
+                        animate={{ opacity: isActive ? 1 : 0.7 }}
+                        transition={{ duration: 0.22 }}
+                        className={`relative z-10 text-xl font-medium leading-none sm:text-3xl ${
+                          isActive ? "text-black" : "text-white"
+                        }`}
+                      >
+                        {String(idx + 1).padStart(2, "0")}
+                      </motion.span>
+                      <motion.span
+                        animate={{ x: isActive ? 2 : 0 }}
+                        transition={{ duration: 0.24, ease: "easeOut" }}
+                        className={`text-xl font-medium leading-none sm:text-3xl ${
+                          isActive ? "text-black" : "text-white"
+                        }`}
+                      >
+                        {service.name}
+                      </motion.span>
+                    </div>
+
+                    <motion.span
+                      whileHover={{ x: 2, y: -2 }}
+                      className={`text-3xl leading-none transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${
+                        isActive
+                          ? "relative z-10 text-black"
+                          : "relative z-10 text-white"
+                      }`}
+                      aria-hidden
+                    >
+                      ↗
+                    </motion.span>
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
