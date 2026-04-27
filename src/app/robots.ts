@@ -17,6 +17,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://devionex.com/sitemap.xml",
+    sitemap: "https://NextIT.com/sitemap.xml",
   };
 }

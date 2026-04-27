@@ -80,7 +80,7 @@ export default function Header({ variant = "auto" }: HeaderProps) {
               src="/assets/img/logo.svg"
               width={238}
               height={50}
-              alt="DevioNex Logo"
+              alt="NextIT Logo"
               priority
               className="h-auto w-[140px]"
             />

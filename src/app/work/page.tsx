@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Our Work — UI/UX Design & Development Portfolio",
 
   description:
-    "Browse DevioNex's portfolio of UI/UX design, SaaS dashboards, landing pages, mobile apps, and full-stack web applications built for startups and founders across the USA and Europe.",
+    "Browse NextIT's portfolio of UI/UX design, SaaS dashboards, landing pages, mobile apps, and full-stack web applications built for startups and founders across the USA and Europe.",
 
   keywords: [
     "UI/UX design portfolio",
@@ -22,19 +22,19 @@ export const metadata: Metadata = {
     "Next.js development portfolio",
     "mobile app design portfolio",
     "landing page design portfolio",
-    "DevioNex portfolio",
+    "NextIT portfolio",
   ],
 
   alternates: {
-    canonical: "https://devionex.com/work",
+    canonical: "https://NextIT.com/work",
   },
 
   openGraph: {
-    title: "Our Work — UI/UX Design & Development Portfolio | DevioNex",
+    title: "Our Work — UI/UX Design & Development Portfolio | NextIT",
     description:
       "Browse our portfolio of UI/UX design, SaaS dashboards, landing pages, mobile apps, and full-stack web applications built for startups across the USA and Europe.",
-    url: "https://devionex.com/work",
-    siteName: "DevioNex",
+    url: "https://NextIT.com/work",
+    siteName: "NextIT",
     locale: "en_US",
     type: "website",
     images: [
@@ -42,18 +42,18 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevioNex Portfolio — UI/UX Design & Development Projects",
+        alt: "NextIT Portfolio — UI/UX Design & Development Projects",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Our Work — UI/UX Design & Development Portfolio | DevioNex",
+    title: "Our Work — UI/UX Design & Development Portfolio | NextIT",
     description:
       "UI/UX design, SaaS dashboards, landing pages, and full-stack web apps built for startups across the USA and Europe.",
     images: ["/og-image.png"],
-    creator: "@devionex",
+    creator: "@NextIT",
   },
 
   robots: {
@@ -72,15 +72,15 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "DevioNex Portfolio",
-  url: "https://devionex.com/work",
+  name: "NextIT Portfolio",
+  url: "https://NextIT.com/work",
   description:
-    "A collection of UI/UX design, SaaS dashboards, landing pages, mobile apps, and full-stack web applications built by DevioNex for startups and founders.",
+    "A collection of UI/UX design, SaaS dashboards, landing pages, mobile apps, and full-stack web applications built by NextIT for startups and founders.",
   publisher: {
     "@type": "Organization",
-    name: "DevioNex",
-    url: "https://devionex.com",
-    logo: "https://devionex.com/assets/img/logo.svg",
+    name: "NextIT",
+    url: "https://NextIT.com",
+    logo: "https://NextIT.com/assets/img/logo.svg",
   },
 };
 

@@ -24,7 +24,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="leading-[150%] font-light text-title text-[36px] sm:text-[40px] md:text-h2 lg:text-[56px] max-w-[1120px] text-center m-auto capitalize"
             >
-              We are DevioNex -{" "}
+              We are NextIT -{" "}
               <strong className="font-semi-bold">
                 a design & engineering team
               </strong>{" "}
@@ -43,7 +43,7 @@ export default function Hero() {
             </motion.h2>
             <div className="mt-12 flex flex-warp items-center justify-center gap-5">
               <Button
-                href="https://cal.com/devionex/15min"
+                href="https://cal.com/NextIT/15min"
                 target="_blank"
                 label="Book a Call"
                 variant="primary"
@@ -72,7 +72,7 @@ export default function Hero() {
         >
           <Image
             src="/assets/img/team/group-work.webp"
-            alt="DevioNex Strategy Hub"
+            alt="NextIT Strategy Hub"
             fill
             className="object-cover transition-all duration-1000 ease-in-out"
             priority

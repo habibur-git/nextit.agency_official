@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "UI/UX Design & Full-Stack Development Services for SaaS Startups",
 
   description:
-    "DevioNex offers UI/UX design, website design, mobile app design, custom web app design, and full-stack Next.js development for SaaS founders and startups in the USA and Europe. Production-ready in 2–4 weeks.",
+    "NextIT offers UI/UX design, website design, mobile app design, custom web app design, and full-stack Next.js development for SaaS founders and startups in the USA and Europe. Production-ready in 2–4 weeks.",
 
   keywords: [
     "UI/UX design services",
@@ -28,15 +28,15 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://devionex.com/services",
+    canonical: "https://NextIT.com/services",
   },
 
   openGraph: {
-    title: "UI/UX Design & Full-Stack Development Services | DevioNex",
+    title: "UI/UX Design & Full-Stack Development Services | NextIT",
     description:
       "UI/UX design, website design, mobile app design, and full-stack Next.js development for SaaS founders and startups. Production-ready in 2–4 weeks.",
-    url: "https://devionex.com/services",
-    siteName: "DevioNex",
+    url: "https://NextIT.com/services",
+    siteName: "NextIT",
     locale: "en_US",
     type: "website",
     images: [
@@ -44,18 +44,18 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevioNex Services — UI/UX Design & Full-Stack Development",
+        alt: "NextIT Services — UI/UX Design & Full-Stack Development",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "UI/UX Design & Full-Stack Development Services | DevioNex",
+    title: "UI/UX Design & Full-Stack Development Services | NextIT",
     description:
       "UI/UX design, website design, mobile app design, and full-stack Next.js development for SaaS founders. Production-ready in 2–4 weeks.",
     images: ["/og-image.png"],
-    creator: "@devionex",
+    creator: "@NextIT",
   },
 
   robots: {
@@ -75,16 +75,16 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "UI/UX Design & Full-Stack Development",
-  url: "https://devionex.com/services",
+  url: "https://NextIT.com/services",
   provider: {
     "@type": "Organization",
-    name: "DevioNex",
-    url: "https://devionex.com",
-    logo: "https://devionex.com/assets/img/logo.svg",
+    name: "NextIT",
+    url: "https://NextIT.com",
+    logo: "https://NextIT.com/assets/img/logo.svg",
     email: "info@nextit.agency",
   },
   description:
-    "DevioNex provides UI/UX design, website design, mobile app design, custom web app design, and full-stack Next.js development for SaaS founders and startups in the USA and Europe.",
+    "NextIT provides UI/UX design, website design, mobile app design, custom web app design, and full-stack Next.js development for SaaS founders and startups in the USA and Europe.",
   areaServed: [
     { "@type": "Country", name: "United States" },
     { "@type": "Country", name: "United Kingdom" },

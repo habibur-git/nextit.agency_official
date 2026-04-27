@@ -7,30 +7,30 @@ import Testimonials from "@/components/ui/Testimonials";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact DevioNex — Start Your Project",
+  title: "Contact NextIT — Start Your Project",
 
   description:
     "Got a project? Tell us about your idea and our senior team will respond within 24 hours. No juniors, no hidden fees, no fluff. Email us at info@nextit.agency.",
 
   keywords: [
-    "contact DevioNex",
+    "contact NextIT",
     "hire UI/UX design agency",
-    "start a project with DevioNex",
+    "start a project with NextIT",
     "get a quote UI/UX design",
     "web development agency contact",
     "SaaS design agency inquiry",
   ],
 
   alternates: {
-    canonical: "https://devionex.com/contact",
+    canonical: "https://NextIT.com/contact",
   },
 
   openGraph: {
-    title: "Contact DevioNex — Start Your Project",
+    title: "Contact NextIT — Start Your Project",
     description:
       "Tell us about your project and our senior team will respond within 24 hours. No juniors, no hidden fees. UI/UX design and full-stack development for SaaS founders.",
-    url: "https://devionex.com/contact",
-    siteName: "DevioNex",
+    url: "https://NextIT.com/contact",
+    siteName: "NextIT",
     locale: "en_US",
     type: "website",
     images: [
@@ -38,18 +38,18 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Contact DevioNex — UI/UX Design & Development Agency",
+        alt: "Contact NextIT — UI/UX Design & Development Agency",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Contact DevioNex — Start Your Project",
+    title: "Contact NextIT — Start Your Project",
     description:
       "Tell us about your project and our senior team will respond within 24 hours. No juniors, no hidden fees.",
     images: ["/og-image.png"],
-    creator: "@devionex",
+    creator: "@NextIT",
   },
 
   robots: {

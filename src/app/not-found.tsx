@@ -5,9 +5,9 @@ import Header from "../components/layout/header/Header";
 
 export const metadata = {
   title:
-    "Not Found - Devionex | UI Designers & Web Developers for Modern, Scalable Websites & Apps",
+    "Not Found - NextIT | UI Designers & Web Developers for Modern, Scalable Websites & Apps",
   description:
-    "Devionex delivers modern UI design and scalable websites with expert web developers. Since 2011, we’ve helped startups and SMEs with quick delivery, 24/7 support, and budget-friendly solutions in UI/UX design, MERN apps, Next.js, front-end, and back-end development.",
+    "NextIT delivers modern UI design and scalable websites with expert web developers. Since 2011, we’ve helped startups and SMEs with quick delivery, 24/7 support, and budget-friendly solutions in UI/UX design, MERN apps, Next.js, front-end, and back-end development.",
 };
 export default function NotFoundPage() {
   return (

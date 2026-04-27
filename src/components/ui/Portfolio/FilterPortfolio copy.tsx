@@ -27,7 +27,7 @@ function PortfolioModuleHeader() {
     <ModuleTitle
       suppertitle="Our Portfolio"
       title="Our Work"
-      subtitle="A collection of UI/UX design, SaaS dashboards, landing pages, mobile apps, and full-stack web applications built by DevioNex for startups and founders."
+      subtitle="A collection of UI/UX design, SaaS dashboards, landing pages, mobile apps, and full-stack web applications built by NextIT for startups and founders."
       variant="v2"
     />
   );

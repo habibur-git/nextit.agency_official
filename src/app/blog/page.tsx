@@ -9,11 +9,11 @@ const CMS_URL = process.env.NEXT_PUBLIC_CMS_URL;
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog | DevioNex – UI/UX, Web Development & Design Insights",
+  title: "Blog | NextIT – UI/UX, Web Development & Design Insights",
   description:
-    "Read our latest articles on UI/UX design, web development, and product strategy. Tips, case studies, and insights from the DevioNex team.",
+    "Read our latest articles on UI/UX design, web development, and product strategy. Tips, case studies, and insights from the NextIT team.",
   openGraph: {
-    title: "Blog | DevioNex – UI/UX, Web Development & Design Insights",
+    title: "Blog | NextIT – UI/UX, Web Development & Design Insights",
     description:
       "Read our latest articles on UI/UX design, web development, and product strategy.",
     type: "website",
@@ -114,9 +114,7 @@ export default async function BlogPage() {
                           {blog.publishedAt?.slice(0, 10)}
                         </p>
                         {blog.category && (
-                          <p className="text-xs text-desc">
-                            {blog.category}
-                          </p>
+                          <p className="text-xs text-desc">{blog.category}</p>
                         )}
                       </div>
                       <h2 className="text-h4 mb-3">{blog.title}</h2>
@@ -127,7 +125,6 @@ export default async function BlogPage() {
                   </Link>
                 );
               })}
-              
             </div>
           </div>
         </section>

@@ -1,9 +1,9 @@
 import LegalPage from "@/components/legal/LegalPage";
 
 export const metadata = {
-  title: "Refund Policy | DevioNex",
+  title: "Refund Policy | NextIT",
   description:
-    "DevioNex refund conditions based on project stage and work completed.",
+    "NextIT refund conditions based on project stage and work completed.",
 };
 
 export default function RefundPolicyPage() {

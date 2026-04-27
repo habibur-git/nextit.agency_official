@@ -30,19 +30,18 @@ const playfair = Playfair_Display({
   preload: false,
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://devionex.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://NextIT.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default:
-      "UI/UX Design & Web Development Agency for SaaS Startups | DevioNex",
-    template: "%s | DevioNex",
+    default: "UI/UX Design & Web Development Agency for SaaS Startups | NextIT",
+    template: "%s | NextIT",
   },
 
   description:
-    "DevioNex is a UI/UX design and full-stack development agency for SaaS founders and startups in the USA and Europe. We ship senior-level design and production-ready Next.js code in 2–4 weeks. No fluff.",
+    "NextIT is a UI/UX design and full-stack development agency for SaaS founders and startups in the USA and Europe. We ship senior-level design and production-ready Next.js code in 2–4 weeks. No fluff.",
 
   keywords: [
     "UI/UX design agency",
@@ -54,12 +53,12 @@ export const metadata: Metadata = {
     "full-stack development agency",
     "mobile app design agency",
     "SaaS dashboard design",
-    "DevioNex",
+    "NextIT",
   ],
 
-  authors: [{ name: "DevioNex", url: siteUrl }],
-  creator: "DevioNex",
-  publisher: "DevioNex",
+  authors: [{ name: "NextIT", url: siteUrl }],
+  creator: "NextIT",
+  publisher: "NextIT",
 
   alternates: {
     canonical: siteUrl,
@@ -69,8 +68,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "DevioNex",
-    title: "UI/UX Design & Web Development Agency for SaaS Startups | DevioNex",
+    siteName: "NextIT",
+    title: "UI/UX Design & Web Development Agency for SaaS Startups | NextIT",
     description:
       "Senior-level UI/UX design and production-ready Next.js development for SaaS founders and startups in the USA and Europe. Shipped in 2–4 weeks.",
     images: [
@@ -78,18 +77,18 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevioNex — UI/UX Design & Web Development Agency for SaaS Startups",
+        alt: "NextIT — UI/UX Design & Web Development Agency for SaaS Startups",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "UI/UX Design & Web Development Agency for SaaS Startups | DevioNex",
+    title: "UI/UX Design & Web Development Agency for SaaS Startups | NextIT",
     description:
       "Senior-level UI/UX design and production-ready Next.js development for SaaS founders and startups. Shipped in 2–4 weeks. No fluff.",
     images: ["/og-image.png"],
-    creator: "@devionex",
+    creator: "@NextIT",
   },
 
   icons: {
@@ -125,17 +124,17 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "DevioNex",
+  name: "NextIT",
   url: siteUrl,
   logo: `${siteUrl}/assets/img/logo.svg`,
   description:
-    "DevioNex is a UI/UX design and full-stack development agency for SaaS founders and startups in the USA and Europe.",
+    "NextIT is a UI/UX design and full-stack development agency for SaaS founders and startups in the USA and Europe.",
   email: "info@nextit.agency",
   foundingDate: "2024",
   areaServed: ["US", "GB", "EU"],
   sameAs: [
-    "https://www.linkedin.com/company/devionex",
-    "https://www.behance.net/devionex",
+    "https://www.linkedin.com/company/NextIT",
+    "https://www.behance.net/NextIT",
   ],
   contactPoint: {
     "@type": "ContactPoint",

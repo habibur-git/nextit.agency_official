@@ -1,16 +1,16 @@
 import LegalPage from "@/components/legal/LegalPage";
 
 export const metadata = {
-  title: "Privacy Policy | DevioNex",
+  title: "Privacy Policy | NextIT",
   description:
-    "How DevioNex collects, uses, and protects your personal information.",
+    "How NextIT collects, uses, and protects your personal information.",
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      subtitle="How we collect, use, and protect your personal information when you visit devionex.com or engage our services."
+      subtitle="How we collect, use, and protect your personal information when you visit NextIT.com or engage our services."
       lastUpdated="April 11, 2026"
       relatedLinks={[
         { label: "Terms of Service →", href: "/terms-of-service" },
@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
         {
           heading: "Contact",
           content:
-            "If you have any questions about this Privacy Policy, contact us at info@nextit.agency or visit devionex.com.",
+            "If you have any questions about this Privacy Policy, contact us at info@nextit.agency or visit NextIT.com.",
         },
       ]}
     />

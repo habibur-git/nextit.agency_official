@@ -178,7 +178,11 @@ function getCoverImageFullUrl(blog: BlogDoc): string | undefined {
   if (!cover || typeof cover === "number") return undefined;
   const url = (cover as { url?: string }).url;
   if (!url || typeof url !== "string") return undefined;
-  return url.startsWith("http") ? url : CMS_URL ? `${CMS_URL}${url}` : undefined;
+  return url.startsWith("http")
+    ? url
+    : CMS_URL
+      ? `${CMS_URL}${url}`
+      : undefined;
 }
 
 export async function generateMetadata({
@@ -188,12 +192,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const blog = await fetchBlog(slug);
-  if (!blog)
-    return { title: "Blog not found" };
+  if (!blog) return { title: "Blog not found" };
 
   const title = blog.seo?.metaTitle || blog.title;
-  const description =
-    blog.seo?.metaDescription || blog.excerpt || undefined;
+  const description = blog.seo?.metaDescription || blog.excerpt || undefined;
   const canonical = `/blog/${slug}`;
   const ogImage = getCoverImageFullUrl(blog);
 
@@ -320,7 +322,7 @@ export default async function BlogDetailPage({
         }
     : { background: hero?.solidColor ?? "#0c1929" };
 
-    const blogs = await fetchBlogs();
+  const blogs = await fetchBlogs();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -330,16 +332,15 @@ export default async function BlogDetailPage({
     image: getCoverImageFullUrl(blog),
     datePublished: blog.publishedAt,
     dateModified: blog.lastUpdatedAt || blog.publishedAt,
-    author:
-      blog.author?.name ?
-        {
+    author: blog.author?.name
+      ? {
           "@type": "Person",
           name: blog.author.name,
         }
       : undefined,
     publisher: {
       "@type": "Organization",
-      name: "DevioNex",
+      name: "NextIT",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -411,7 +412,7 @@ export default async function BlogDetailPage({
                   </span>
                 )}
                 <span className="text-white/80">
-                  By {blog.author?.name ?? "Devionex Team"}
+                  By {blog.author?.name ?? "NextIT Team"}
                 </span>
               </p>
               <span className="shrink-0 px-3 py-1.5 rounded-md bg-white/10 text-white text-sm font-medium">
@@ -683,9 +684,7 @@ export default async function BlogDetailPage({
                           {blog.publishedAt?.slice(0, 10)}
                         </p>
                         {blog.category && (
-                          <p className="text-xs text-desc">
-                            {blog.category}
-                          </p>
+                          <p className="text-xs text-desc">{blog.category}</p>
                         )}
                       </div>
                       <h2 className="text-h4 mb-3">{blog.title}</h2>
@@ -696,7 +695,6 @@ export default async function BlogDetailPage({
                   </Link>
                 );
               })}
-              
             </div>
           </div>
         </section>

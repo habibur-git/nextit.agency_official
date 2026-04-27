@@ -22,12 +22,12 @@ type PopupState =
   | { kind: "error"; message: string; detail?: string };
 
 const SUCCESS_WA_PREFILL =
-  "Hi DevioNex! I just submitted the contact form on devionex.com. Looking forward to your reply.";
+  "Hi NextIT! I just submitted the contact form on NextIT.com. Looking forward to your reply.";
 
 function errorWhatsappPrefill(mainMessage: string): string {
   const clipped =
     mainMessage.length > 240 ? `${mainMessage.slice(0, 237)}…` : mainMessage;
-  return `Hi DevioNex! I tried the contact form on devionex.com but it didn’t send. ${clipped}\n\nCould we continue here?`;
+  return `Hi NextIT! I tried the contact form on NextIT.com but it didn’t send. ${clipped}\n\nCould we continue here?`;
 }
 
 function truncateDetail(s: string, max = 420): string {
@@ -74,7 +74,7 @@ export default function Contact({
   /** Always available on the form — opens WhatsApp to message the business. */
   const formFooterWhatsappHref = useMemo(
     () =>
-      whatsappChatUrl("Hi DevioNex! I'd like to get in touch about a project."),
+      whatsappChatUrl("Hi NextIT! I'd like to get in touch about a project."),
     [],
   );
 
@@ -465,7 +465,7 @@ export default function Contact({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-semibold text-[#128C7E] underline-offset-2 transition hover:underline"
-                aria-label="Open WhatsApp to message DevioNex"
+                aria-label="Open WhatsApp to message NextIT"
               >
                 <IoLogoWhatsapp
                   className="h-5 w-5 shrink-0 text-[#25D366]"
@@ -555,7 +555,7 @@ export default function Contact({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-[#20bd5a]"
-                      aria-label="Open WhatsApp to message DevioNex"
+                      aria-label="Open WhatsApp to message NextIT"
                     >
                       <IoLogoWhatsapp
                         className="h-6 w-6 shrink-0"
@@ -571,7 +571,7 @@ export default function Contact({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-[#20bd5a]"
-                      aria-label="Open WhatsApp to message DevioNex"
+                      aria-label="Open WhatsApp to message NextIT"
                     >
                       <IoLogoWhatsapp
                         className="h-6 w-6 shrink-0"

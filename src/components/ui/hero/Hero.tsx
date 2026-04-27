@@ -57,7 +57,7 @@ export default function Hero() {
           </motion.h2>
           <div className="mt-12 flex items-center gap-5">
             <Button
-              href="https://cal.com/devionex/15min"
+              href="https://cal.com/NextIT/15min"
               target="_blank"
               label="Book a Call"
               variant="primary"

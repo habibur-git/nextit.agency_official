@@ -29,36 +29,23 @@ const NAV_LINKS = [
   { text: "Contact", href: "/contact" },
 ] as const;
 
-const Industries = [
-  { text: "Finance & Fintech", href: "#" },
-  { text: "SaaS & B2B Platforms", href: "#" },
-  { text: "E-Commerce", href: "#" },
-  { text: "Hospitality & Food Industry", href: "#" },
-  { text: "EdTech & HealthTech", href: "#" },
-  { text: "Web3 & AI", href: "#" },
+const Services = [
+  { text: "Research And Strategy", href: "/services" },
+  { text: "Corporate Identity", href: "/services" },
+  { text: "UX/UI Design", href: "/services" },
+  { text: "Design Support", href: "/services" },
 ] as const;
 
 const SOCIAL_LINKS: readonly FooterColumnLink[] = [
   {
     text: "LinkedIn",
-    href: "https://www.linkedin.com/company/devionex",
+    href: "https://www.linkedin.com/company/NextIT",
     icon: FaLinkedinIn,
   },
   { text: "Behance", href: "https://www.youtube.com", icon: FaBehance },
   { text: "Dribbble", href: "https://www.instagram.com", icon: FaDribbble },
   { text: "Instagram", href: "https://www.instagram.com", icon: FaInstagram },
   { text: "Facebook", href: "https://www.instagram.com", icon: FaFacebook },
-];
-
-const Contact: FooterColumnLink[] = [
-  {
-    text: "info@nextit.agency",
-    href: "mailto:info@nextit.agency",
-  },
-  // {
-  //   text: "+880 1956-463736",
-  //   href: "tel:+8801956463736",
-  // },
 ];
 
 const LEGAL_LINKS = [
@@ -69,9 +56,8 @@ const LEGAL_LINKS = [
 
 const FOOTER_COLUMNS = [
   { title: "Navigation", links: NAV_LINKS },
-  { title: "Industries", links: Industries },
+  { title: "Services", links: Services },
   { title: "Follow Us", links: SOCIAL_LINKS },
-  { title: "Drop us a line", links: Contact },
 ] as const;
 
 function FooterColumn({
@@ -86,8 +72,8 @@ function FooterColumn({
       <h6 className="text-[15px] font-semi-bold uppercase tracking-[0.08em] text-title">
         {title}
       </h6>
-      <div className="mt-3 border-t border-title/20" />
-      <ul className="mt-5 flex flex-col gap-3 p-0">
+
+      <ul className="mt-5 flex flex-col gap-3 p-0 ">
         {links.map((link) => {
           const Icon = link.icon;
           return (
@@ -125,33 +111,39 @@ export default function Footer() {
   return (
     <footer className="bg-bg pt-16 pb-8">
       <div className="container">
+        <div className="flex justify-between items-center pb-8 border-b border-title/10 mb-12">
+          <Image
+            width={625}
+            height={92}
+            src="/assets/img/logo.svg"
+            alt="NextIT"
+            priority={false}
+            className="h-16 w-auto"
+          />
+          <div className="">
+            <Link href="mailto:info@nextit.agency" className="text-h5 mb-0">
+              info@nextit.agency
+            </Link>
+          </div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-8"
         >
           {FOOTER_COLUMNS.map((col) => (
             <FooterColumn key={col.title} title={col.title} links={col.links} />
           ))}
         </motion.div>
 
-        <Image
-          width={625}
-          height={92}
-          src="/assets/img/logo.svg"
-          alt="DevioNex"
-          priority={false}
-          className="mt-12 h-auto w-full"
-        />
-
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="pt-8 bg-theme/10 -mt-10 z-1 relative backdrop-blur-sm flex flex-wrap sm:items-center justify-between gap-6"
+          className=" z-1 relative flex flex-wrap sm:items-center justify-between gap-6 border-t border-title/10 pt-8 mt-12"
         >
           <div>
             <Link
@@ -166,7 +158,7 @@ export default function Footer() {
               >
                 <GoDownload className="size-5" />
               </span>
-              <span className="min-w-0">
+              <span className="min-w-max">
                 <span className="block font-title text-[17px] font-semibold text-white">
                   Company Deck
                 </span>
@@ -179,10 +171,10 @@ export default function Footer() {
           <p className="font-body text-[15px] text-white/80">
             © 2024 - {new Date().getFullYear()}{" "}
             <Link
-              href="https://devionex.com"
+              href="https://NextIT.com"
               className="font-semibold text-secondary underline-offset-2 hover:text-title hover:underline"
             >
-              DevioNex{" "}
+              NextIT{" "}
             </Link>
             | All Rights Reserved.
           </p>

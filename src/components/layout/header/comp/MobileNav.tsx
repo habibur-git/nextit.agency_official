@@ -18,7 +18,7 @@ export default function MobileNav({ onClose }: MobileNavProps) {
   const handleMenuClick = (
     e: React.MouseEvent,
     itemId: number,
-    hasSubmenu: boolean
+    hasSubmenu: boolean,
   ) => {
     if (hasSubmenu) {
       e.preventDefault(); // prevent navigation
@@ -51,7 +51,7 @@ export default function MobileNav({ onClose }: MobileNavProps) {
               width={140}
               height={60}
               src="/assets/img/sec-logo.svg"
-              alt="DevioNex Logo"
+              alt="NextIT Logo"
               priority
             />
           </Link>

@@ -38,9 +38,9 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-[18px] text-title/60 font-body mt-4 hero-desc tracking-normal text-center"
             >
-              DevioNex transforms complex ideas into high-performance SaaS,
-              MVPs, and web applications. We combine world-class UI/UX with
-              robust engineering to help your business scale globally.
+              NextIT transforms complex ideas into high-performance SaaS, MVPs,
+              and web applications. We combine world-class UI/UX with robust
+              engineering to help your business scale globally.
             </motion.h2>
             <div className="mt-12 flex flex-wrap items-center justify-center gap-5">
               <Button
@@ -50,7 +50,7 @@ export default function Hero() {
                 variant="primary"
               />
               <Button
-                href="https://cal.com/devionex/15min"
+                href="https://cal.com/NextIT/15min"
                 target="_blank"
                 label="Book a Consultation"
                 variant="link"

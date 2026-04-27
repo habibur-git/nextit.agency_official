@@ -7,7 +7,7 @@ export default function Team() {
     <section className="space ">
       <div className="container">
         <ModuleTitle
-          suppertitle="DevioNex Team"
+          suppertitle="NextIT Team"
           title="Meet the team **behind the work.**"
           subtitle="Senior designers and engineers who work as an extension of your team — not as an outsider agency."
           variant="v2"

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://devionex.com";
+const siteUrl = "https://NextIT.com";
 
 const fetchCache = { next: { revalidate: 3600 } } as const;
 

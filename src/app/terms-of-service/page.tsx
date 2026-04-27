@@ -1,16 +1,16 @@
 import LegalPage from "@/components/legal/LegalPage";
 
 export const metadata = {
-  title: "Terms of Service | DevioNex",
+  title: "Terms of Service | NextIT",
   description:
-    "Terms and conditions governing your use of DevioNex services and website.",
+    "Terms and conditions governing your use of NextIT services and website.",
 };
 
 export default function TermsOfServicePage() {
   return (
     <LegalPage
       title="Terms of Service"
-      subtitle="These terms govern your use of devionex.com and any services provided by DevioNex. By engaging our services, you agree to these terms."
+      subtitle="These terms govern your use of NextIT.com and any services provided by NextIT. By engaging our services, you agree to these terms."
       lastUpdated="April 11, 2026"
       relatedLinks={[
         { label: "Privacy Policy →", href: "/privacy-policy" },
@@ -20,7 +20,7 @@ export default function TermsOfServicePage() {
         {
           heading: "Services",
           content:
-            "DevioNex provides UI/UX design, full-stack web development, mobile app design, and related digital product services. The specific scope, deliverables, timeline, and pricing for each project are agreed upon during the discovery process and confirmed in a separate project agreement or proposal.",
+            "NextIT provides UI/UX design, full-stack web development, mobile app design, and related digital product services. The specific scope, deliverables, timeline, and pricing for each project are agreed upon during the discovery process and confirmed in a separate project agreement or proposal.",
         },
         {
           heading: "Project engagement",
@@ -43,8 +43,8 @@ export default function TermsOfServicePage() {
           heading: "Intellectual property",
           content: [
             "Upon full payment, all final deliverables — including design files, source code, and related assets — become the sole property of the client.",
-            "Before full payment, all work remains the intellectual property of DevioNex. Partial deliverables may not be used, published, or shared without written consent.",
-            "DevioNex reserves the right to display completed work in our portfolio and marketing materials unless explicitly agreed otherwise in writing.",
+            "Before full payment, all work remains the intellectual property of NextIT. Partial deliverables may not be used, published, or shared without written consent.",
+            "NextIT reserves the right to display completed work in our portfolio and marketing materials unless explicitly agreed otherwise in writing.",
           ],
         },
         {
@@ -60,7 +60,7 @@ export default function TermsOfServicePage() {
         {
           heading: "Limitation of liability",
           content:
-            "DevioNex's total liability for any claim arising from our services shall not exceed the total amount paid by the client for the specific project in question. We are not liable for indirect, incidental, or consequential damages including lost profits or business interruption.",
+            "NextIT's total liability for any claim arising from our services shall not exceed the total amount paid by the client for the specific project in question. We are not liable for indirect, incidental, or consequential damages including lost profits or business interruption.",
         },
         {
           heading: "Warranties",
