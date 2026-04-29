@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/common/Breadcrumb";
 import Footer from "@/components/layout/footer/Footer";
 import Header from "@/components/layout/header/Header";
 import Contact from "@/components/ui/contact/ContactForm";
@@ -69,6 +70,7 @@ export default function ContactPage() {
   return (
     <>
       <Header />
+      <Breadcrumb title="Contact Us" />
       <main>
         <section className="space">
           <div className="container">

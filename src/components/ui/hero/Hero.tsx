@@ -13,7 +13,7 @@ const STATS = [
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen w-full max-w-full min-w-0 flex-col overflow-hidden space ">
+    <section className="relative flex min-h-screen w-full max-w-full min-w-0 flex-col overflow-hidden space bg-[url('/assets/img/bg/hero-1-bg.webp')] bg-cover bg-center">
       <div className="container relative z-10 flex min-h-0 flex-1 flex-col h-full justify-between">
         {/* HERO CONTENT */}
         <div className="mt-24 mb-12 flex h-full min-h-0 flex-col items-center justify-center text-center md:mb-0 lg:h-[80%]">

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Building2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { IconType } from "react-icons";
@@ -53,6 +54,44 @@ const LEGAL_LINKS = [
   { label: "Terms of Service", href: "/terms-of-service" },
   { label: "Refund Policy", href: "/refund-policy" },
 ] as const;
+
+const LOCATION_DATA = [
+  {
+    id: 1,
+    img: "/assets/img/bd.webp",
+    country: "Bangladesh",
+    code: "BD",
+    office: "Dhaka",
+    address:
+      "H/1, Road-6, Duaripara Bazar, <br /> Rupnagar, Mirpur, Dhaka-1216",
+    phone: "+8801630-253650",
+  },
+  {
+    id: 2,
+    img: "/assets/img/ml.jpg",
+    country: "Malaysia",
+    code: "MY",
+    office: "Malaysia",
+    address: "Seri Kembangan, Selangor, <br /> Malaysia 43300",
+    phone: "+8801690-274952",
+  },
+  {
+    id: 3,
+    img: "/assets/img/ku.webp",
+    country: "Kuwait",
+    code: "KW",
+    office: "Kuwait",
+    address:
+      "Al-Mubarakah: Fahad Al-Basman Heritage Complex, <br /> Ground Floor, Shop No. 16",
+    phone: "+8801690-274952",
+  },
+] as const;
+
+const getPlainAddress = (address: string) =>
+  address
+    .replace(/<br\s*\/?>/gi, ", ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const FOOTER_COLUMNS = [
   { title: "Navigation", links: NAV_LINKS },
@@ -136,6 +175,47 @@ export default function Footer() {
           {FOOTER_COLUMNS.map((col) => (
             <FooterColumn key={col.title} title={col.title} links={col.links} />
           ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="mt-12 border-t border-title/10 pt-8"
+        >
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {LOCATION_DATA.map((item) => (
+              <div
+                key={item.id}
+                className="relative rounded-xl bg-transparent pr-2 transition-colors lg:pr-6 lg:not-last:border-r lg:not-last:border-title/10"
+              >
+                <div className="mb-2 inline-flex items-center gap-2 text-theme">
+                  <Building2 className="size-4" strokeWidth={1.9} />
+                  <span className="text-[11px] font-semi-bold uppercase tracking-[0.12em] text-theme/85">
+                    {item.code}
+                  </span>
+                </div>
+
+                <div className="flex items-start justify-between gap-3 mt-4">
+                  <div className="min-w-0">
+                    <h5 className="text-h5 font-black text-white">
+                      {item.office}
+                    </h5>
+                    <p className="mt-2 line-clamp-2 text-sm leading-snug text-white/65">
+                      {getPlainAddress(item.address)}
+                    </p>
+                    <Link
+                      href={`tel:${item.phone.replace(/\s/g, "")}`}
+                      className="mt-3 inline-block text-base font-semi-bold text-white/80 transition-colors hover:text-theme"
+                    >
+                      {item.phone}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div

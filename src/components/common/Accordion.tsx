@@ -43,7 +43,7 @@ export default function Accordion({
           return (
             <div
               key={item.id}
-              className="border-b border-border/80 first:border-t-0 last:border-b-0 "
+              className="border-b border-border/10 first:border-t-0 last:border-b-0 "
             >
               <button
                 type="button"

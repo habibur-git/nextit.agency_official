@@ -22,13 +22,13 @@ function LayoutItem({ item }: { item: WorkLayoutCardItem }) {
   return (
     <div className="min-w-0">
       {hasImage && (
-        <div className="w-full aspect-video bg-gray-100 mb-3">
+        <div className="w-full  bg-gray-100 mb-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={item.image} alt="" className="w-full h-full object-cover" />
         </div>
       )}
       {hasContent && (
-        <div className="prose prose-sm max-w-none text-desc [&_a]:text-theme [&_a]:underline [&_p]:mb-2 last:[&_p]:mb-0">
+        <div className="blog-lexical-html prose prose-sm max-w-none [&_p]:mb-2 last:[&_p]:mb-0">
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       )}
@@ -69,6 +69,23 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
   allItems = [],
   basePath = "/case-studies",
 }) => {
+  const buildAlternatingRows = <T,>(items: T[]): T[][] => {
+    const rows: T[][] = [];
+    let i = 0;
+    let isSingle = true;
+    while (i < items.length) {
+      if (isSingle) {
+        rows.push(items.slice(i, i + 1));
+        i += 1;
+      } else {
+        rows.push(items.slice(i, i + 2));
+        i += 2;
+      }
+      isSingle = !isSingle;
+    }
+    return rows;
+  };
+
   const currentIndex = allItems.findIndex((i) => i.slug === portfolioItem.slug);
   const idx = currentIndex >= 0 ? currentIndex : 0;
   const len = allItems.length;
@@ -208,120 +225,233 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
       <div className="w-full">
         {portfolioItem.sections.map((sec, secIdx) => {
-              const sectionStyle =
-                sec.useBackgroundColor && sec.backgroundColor
-                  ? { backgroundColor: sec.backgroundColor }
-                  : undefined;
-              const renderBlock = (block: WorkLayoutBlock, i: number) => {
-                switch (block.blockType) {
-                  case "richText": {
-                    const richHtml = lexicalToHtml(block.content);
-                    return (
-                      <div
-                        key={block.id ?? i}
-                        className="prose prose-lg max-w-none text-desc leading-relaxed"
-                      >
-                        {richHtml ? (
-                          <div
-                            className="[&_a]:text-theme [&_a]:underline [&_h1]:text-h1 [&_h2]:text-h2 [&_h3]:text-h3 [&_p]:mb-p"
-                            dangerouslySetInnerHTML={{ __html: richHtml }}
-                          />
-                        ) : null}
+          const sectionStyle =
+            sec.useBackgroundColor && sec.backgroundColor
+              ? { backgroundColor: sec.backgroundColor }
+              : undefined;
+          const isTwoColumnGrid = (sec.sectionGrid ?? "2") === "2";
+
+          const textBlocks = (sec.layout ?? []).filter((b) =>
+            ["richText", "quote", "code"].includes(b.blockType),
+          );
+          const mediaBlocks = (sec.layout ?? []).filter((b) =>
+            ["image", "grid"].includes(b.blockType),
+          );
+
+          const renderTextBlock = (block: WorkLayoutBlock, i: number) => {
+            switch (block.blockType) {
+              case "richText": {
+                const richHtml = lexicalToHtml(block.content);
+                return richHtml ? (
+                  <div
+                    key={block.id ?? i}
+                    className="blog-lexical-html blog-lexical-html--work"
+                    dangerouslySetInnerHTML={{ __html: richHtml }}
+                  />
+                ) : null;
+              }
+              case "quote":
+                return (
+                  <blockquote
+                    key={block.id ?? i}
+                    className="border-l-4 border-theme pl-4 py-2 italic text-desc text-base"
+                  >
+                    {block.text}
+                    {block.author && (
+                      <div className="mt-2 text-sm font-semibold text-title">
+                        — {block.author}
                       </div>
-                    );
-                  }
-                  case "image":
-                    return (
-                      <figure key={block.id ?? i} className="my-8">
-                        {block.image?.url ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={block.image.url}
-                            alt={block.caption || ""}
-                            className="rounded-2xl w-full object-cover"
-                          />
-                        ) : null}
-                        {block.caption && (
-                          <figcaption className="text-xs text-desc mt-2">
-                            {block.caption}
-                          </figcaption>
-                        )}
-                      </figure>
-                    );
-                  case "quote":
-                    return (
-                      <blockquote
-                        key={block.id ?? i}
-                        className="border-l-4 border-theme pl-4 py-2 my-6 italic text-desc text-base"
-                      >
-                        {block.text}
-                        {block.author && (
-                          <div className="mt-2 text-sm font-semibold text-title">
-                            — {block.author}
-                          </div>
-                        )}
-                      </blockquote>
-                    );
-                  case "code":
-                    return (
-                      <div
-                        key={block.id ?? i}
-                        className="code-block min-w-0 [&_script]:hidden"
-                        dangerouslySetInnerHTML={{
-                          __html: block.code?.trim() ?? "",
-                        }}
+                    )}
+                  </blockquote>
+                );
+              case "code":
+                return (
+                  <div
+                    key={block.id ?? i}
+                    className="code-block min-w-0 [&_script]:hidden"
+                    dangerouslySetInnerHTML={{
+                      __html: block.code?.trim() ?? "",
+                    }}
+                  />
+                );
+              default:
+                return null;
+            }
+          };
+
+          const renderMediaBlocks = () => {
+            const output: React.ReactNode[] = [];
+            const pendingImages: React.ReactNode[] = [];
+
+            const flushPendingImages = () => {
+              if (pendingImages.length === 0) return;
+              const rows = buildAlternatingRows(pendingImages);
+              rows.forEach((row, rowIndex) => {
+                output.push(
+                  <div
+                    key={`media-row-${secIdx}-${output.length}-${rowIndex}`}
+                    className={`grid gap-4 ${
+                      row.length === 1
+                        ? "grid-cols-1"
+                        : "grid-cols-1 md:grid-cols-2"
+                    }`}
+                  >
+                    {row.map((node, i) => (
+                      <React.Fragment key={`media-item-${rowIndex}-${i}`}>
+                        {node}
+                      </React.Fragment>
+                    ))}
+                  </div>,
+                );
+              });
+              pendingImages.length = 0;
+            };
+
+            mediaBlocks.forEach((block, i) => {
+              if (block.blockType === "image") {
+                pendingImages.push(
+                  <figure
+                    key={`image-${block.id ?? i}`}
+                    className="rounded-xl"
+                  >
+                    {block.image?.url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={block.image.url}
+                        alt={block.caption || ""}
+                        className="w-full h-full object-cover"
                       />
-                    );
-                  case "grid": {
-                    const cols =
-                      block.columns === "2"
-                        ? "grid-cols-1 md:grid-cols-2"
-                        : block.columns === "4"
-                          ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-                          : "grid-cols-1 md:grid-cols-3";
-                    return (
-                      <div key={block.id ?? i} className={`grid ${cols} gap-6`}>
-                        {(block.items ?? []).map(
-                          (item: WorkLayoutCardItem, j: number) => (
-                            <LayoutItem key={j} item={item} />
-                          ),
-                        )}
+                    ) : null}
+                    {block.caption && (
+                      <figcaption className="text-xs text-desc mt-2 px-1 py-2">
+                        {block.caption}
+                      </figcaption>
+                    )}
+                  </figure>,
+                );
+                return;
+              }
+
+              if (block.blockType === "grid") {
+                flushPendingImages();
+                const cols =
+                  block.columns === "2"
+                    ? "grid-cols-1 md:grid-cols-2"
+                    : block.columns === "4"
+                      ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                      : "grid-cols-1 md:grid-cols-3";
+                output.push(
+                  <div
+                    key={`grid-block-${block.id ?? i}`}
+                    className={`grid ${cols} gap-4`}
+                  >
+                    {(block.items ?? []).map((item: WorkLayoutCardItem, j: number) => (
+                      <div
+                        key={`grid-${block.id ?? i}-${j}`}
+                        className="rounded-xl"
+                      >
+                        <LayoutItem item={item} />
                       </div>
-                    );
-                  }
-                  default:
-                    return null;
-                }
-              };
-              return (
-                <section
-                  key={secIdx}
-                  className="w-full py-8 mb-16 last:mb-0"
-                  style={sectionStyle}
-                >
-                  {sec.container !== false ? (
-                    <div className="container mx-auto px-4 space-y-8">
-                      {(sec.layout ?? []).map((block, i) =>
-                        renderBlock(block, i),
-                      )}
-                    </div>
-                  ) : (
-                    <div className="space-y-8">
-                      {(sec.layout ?? []).map((block, i) =>
-                        renderBlock(block, i),
-                      )}
+                    ))}
+                  </div>,
+                );
+              }
+            });
+
+            flushPendingImages();
+            return output;
+          };
+
+          return (
+            <section
+              key={secIdx}
+              className="w-full py-8 last:mb-0"
+              style={sectionStyle}
+            >
+              {sec.container !== false ? (
+                <div className="container mx-auto px-4 space-y-10">
+                  {textBlocks.length > 0 && (
+                    isTwoColumnGrid ? (
+                      <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
+                        <div className="col-span-4">
+                          {sec.sectionLabel ? (
+                            <p className="text-sm font-bold uppercase tracking-widest text-title mb-4">
+                              {sec.sectionLabel}
+                            </p>
+                          ) : null}
+                        </div>
+                        <div className="col-span-8 leading-relaxed space-y-8">
+                          {textBlocks.map((block, i) => (
+                            <div key={`text-${block.id ?? i}`}>
+                              {renderTextBlock(block, i)}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="leading-relaxed space-y-8">
+                        {textBlocks.map((block, i) => (
+                          <div key={`text-fullgrid-${block.id ?? i}`}>
+                            {renderTextBlock(block, i)}
+                          </div>
+                        ))}
+                      </div>
+                    )
+                  )}
+
+                  {mediaBlocks.length > 0 && (
+                    <div className="mt-0 space-y-4">
+                      {renderMediaBlocks()}
                     </div>
                   )}
-                </section>
-              );
-            })}
+                </div>
+              ) : (
+                <div className="space-y-10">
+                  {textBlocks.length > 0 && (
+                    isTwoColumnGrid ? (
+                      <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-6 md:gap-10 px-4 items-start">
+                        <div>
+                          {sec.sectionLabel ? (
+                            <p className="text-xs font-semibold uppercase tracking-wide text-title/70">
+                              {sec.sectionLabel}
+                            </p>
+                          ) : null}
+                        </div>
+                        <div className="max-w-[700px] min-w-0 leading-relaxed space-y-8">
+                          {textBlocks.map((block, i) => (
+                            <div key={`text-full-${block.id ?? i}`}>
+                              {renderTextBlock(block, i)}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="px-4 leading-relaxed space-y-8">
+                        {textBlocks.map((block, i) => (
+                          <div key={`text-fullgrid-full-${block.id ?? i}`}>
+                            {renderTextBlock(block, i)}
+                          </div>
+                        ))}
+                      </div>
+                    )
+                  )}
+                  {mediaBlocks.length > 0 && (
+                    <div className="mt-16 space-y-4">
+                      {renderMediaBlocks()}
+                    </div>
+                  )}
+                </div>
+              )}
+            </section>
+          );
+        })}
       </div>
 
       <div className="container">
         {/* Keywords */}
         {portfolioItem.keywords && (
           <div className="mt-20 pt-10 border-t border-border">
-            <p className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-4">
+            <p className="text-sm font-bold uppercase tracking-widest text-title mb-4">
               Keywords
             </p>
             <ul className="flex flex-wrap gap-2">

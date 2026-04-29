@@ -2,11 +2,11 @@ import PageLoader from "@/components/common/PageLoader";
 import ScrollTopBehavior from "@/components/common/ScrollTopBehavior";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Onest, Playfair_Display } from "next/font/google";
+import { Syne, Onest, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const inter = Bricolage_Grotesque({
+const inter = Syne({
   variable: "--title-font",
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],

@@ -1,7 +1,8 @@
+import Breadcrumb from "@/components/common/Breadcrumb";
 import Footer from "@/components/layout/footer/Footer";
 import Header from "@/components/layout/header/Header";
 import FilterPortfolio from "@/components/ui/Portfolio/FilterPortfolio";
-import Hero from "@/components/ui/Portfolio/Hero";
+import Faq from "@/components/ui/Faq";
 import { fetchWorkList } from "@/lib/work-api";
 import type { Metadata } from "next";
 import Script from "next/script";
@@ -103,13 +104,17 @@ export default async function WorkPage() {
 
       <main>
         <Header />
-        <Hero />
+        <Breadcrumb
+          title="**Our latest** & great projects"
+          description="A collection of UI/UX design, SaaS dashboards, landing pages"
+        />
         <FilterPortfolio
           basePath="/work"
           filterVariant="reference"
           layoutVariant="grid-1"
           items={workItems}
         />
+        <Faq faqKey="home" />
         <Footer />
       </main>
     </>

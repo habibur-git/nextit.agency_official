@@ -2,38 +2,22 @@
 
 import { faqData } from "@/data/faq";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 import Accordion from "../common/Accordion";
 import { ModuleTitle } from "../common/ModuleTitle";
 
 interface FaqSectionProps {
   faqKey: keyof typeof faqData;
-  email?: string;
   defaultOpenIndex?: number;
 }
 
-export default function Faq({
-  faqKey,
-  email = "info@nextit.agency",
-  defaultOpenIndex = 0,
-}: FaqSectionProps) {
+export default function Faq({ faqKey, defaultOpenIndex = 0 }: FaqSectionProps) {
   const items = faqData[faqKey];
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [emailCopied, setEmailCopied] = useState(false);
-
-  const copyEmail = () => {
-    navigator.clipboard.writeText(email);
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 2000);
-  };
 
   return (
     <section className="relative py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-24">
         <div className="col-span-1 lg:col-span-5">
-          {" "}
           <ModuleTitle
             suppertitle="FAQ"
             title="Got Questions? **We’ve Got Answers**"

@@ -1,10 +1,10 @@
+import Breadcrumb from "@/components/common/Breadcrumb";
 import Pricing from "@/components/common/Pricing";
 import Footer from "@/components/layout/footer/Footer";
 import Header from "@/components/layout/header/Header";
 import Faq from "@/components/ui/Faq";
 import Testimonials from "@/components/ui/Testimonials";
 import Services from "@/components/ui/home/Services";
-import Hero from "@/components/ui/services/Hero";
 import type { Metadata } from "next";
 import Script from "next/script";
 
@@ -155,8 +155,11 @@ export default function ServicesPage() {
       />
 
       <Header />
-      <Hero />
-      <Services variant="v2" />
+      <Breadcrumb
+        title="**Experience** the best services."
+        description="Fulfilled direction use continual set him propriety continued."
+      />
+      <Services />
       <Pricing />
       <Testimonials />
       <Faq faqKey="services" />

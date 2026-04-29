@@ -47,6 +47,8 @@ export type WorkSection = {
   container?: boolean;
   useBackgroundColor?: boolean;
   backgroundColor?: string;
+  sectionGrid?: "1" | "2";
+  sectionLabel?: string;
   layout: WorkLayoutBlock[];
 };
 
@@ -100,6 +102,8 @@ type WorkDocRaw = {
     container?: boolean;
     useBackgroundColor?: boolean;
     backgroundColor?: string;
+    sectionGrid?: string;
+    sectionLabel?: string;
     layout?: {
       blockType: string;
       id?: string;
@@ -292,6 +296,9 @@ function buildSections(doc: WorkDocRaw): WorkSection[] {
         backgroundColor: sec.useBackgroundColor
           ? sec.backgroundColor
           : undefined,
+        sectionGrid: sec.sectionGrid === "1" ? "1" : "2",
+        sectionLabel:
+          typeof sec.sectionLabel === "string" ? sec.sectionLabel : undefined,
         layout,
       };
     });
