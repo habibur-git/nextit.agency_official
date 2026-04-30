@@ -70,7 +70,10 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <Breadcrumb title="Contact Us" />
+      <Breadcrumb
+        title="Contact Us"
+        description="Tell us about your project goals and we will get back to you within 24 hours."
+      />
       <main>
         <section className="space">
           <div className="container">

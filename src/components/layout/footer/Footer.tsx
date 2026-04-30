@@ -112,11 +112,11 @@ function FooterColumn({
         {title}
       </h6>
 
-      <ul className="mt-5 flex flex-col gap-3 p-0 ">
+      <ul className="mt-5 flex flex-col gap-3 p-0 min-w-0">
         {links.map((link) => {
           const Icon = link.icon;
           return (
-            <li key={link.href + link.text}>
+            <li key={link.href + link.text} className="w-max">
               <Link
                 href={link.href}
                 className={cn(
@@ -170,7 +170,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-8"
+          className="flex flex-wrap md:flex-nowrap justify-between gap-6"
         >
           {FOOTER_COLUMNS.map((col) => (
             <FooterColumn key={col.title} title={col.title} links={col.links} />

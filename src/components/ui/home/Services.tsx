@@ -85,12 +85,13 @@ export default function Services() {
   };
 
   return (
-    <section className="space">
+    <section className="space bg-[#000]">
       <div className="container">
         <ModuleTitle
-          suppertitle="What We Do"
-          title="Creative services that **drive growth**"
+          suppertitle="Services"
+          title="**Creative services that drive growth**"
           variant="v1"
+          className="mb-32"
         />
 
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-24">

@@ -13,8 +13,8 @@ import BrandMarquee from "../BrandMarquee";
 
 export default function AboutUs() {
   return (
-    <section className="pb-8 pt-24 bg-bg">
-      <div className="container px-6 mx-auto">
+    <section className="space">
+      <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto min-h-[600px]">
           {/* THE FOUNDER CARD */}
           <motion.div
@@ -94,8 +94,8 @@ export default function AboutUs() {
           </motion.div>
         </div>
       </div>
-      <div className="mt-30 mb-12">
-        <BrandMarquee images={brandLogos} />
+      <div className="mt-30 -mb-6">
+        <BrandMarquee images={brandLogos} className="[&_img]:opacity-50" />
       </div>
     </section>
   );

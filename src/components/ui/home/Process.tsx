@@ -24,7 +24,7 @@ export default function ProcessSection({ data }: WhyProps) {
   const items = pageData.items as ProcessItem[];
 
   return (
-    <section className="bg-black py-16 md:py-24">
+    <section className="py-16 md:py-24">
       <div className="container px-6">
         <ModuleTitle
           suppertitle={pageData.suppertitle}
@@ -33,7 +33,7 @@ export default function ProcessSection({ data }: WhyProps) {
           variant="v2"
         />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => {
             const Icon = STEP_ICONS[index] ?? Search;
             const iconTop = index % 2 === 0;

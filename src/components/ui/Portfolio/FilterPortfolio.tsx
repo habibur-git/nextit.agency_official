@@ -26,8 +26,8 @@ function PortfolioModuleHeader() {
   return (
     <ModuleTitle
       suppertitle="Our Portfolio"
-      title="Our Work"
-      variant="v3"
+      title="**Designs That Drive Engagement**"
+      variant="v2"
       className="mb-0"
     />
   );
@@ -287,7 +287,7 @@ const FilterPortfolio = ({
       <section className="min-h-screen py-12 md:py-24">
         <div className="container">
           {showModuleTitle ? (
-            <div className="mb-10 flex flex-col gap-5 md:mb-14 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div className="min-w-0 flex-1">
                 <PortfolioModuleHeader />
               </div>

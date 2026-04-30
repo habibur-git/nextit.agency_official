@@ -6,8 +6,8 @@
   --secondary-color: #ffffff;
   --title-color: #ffffff;
   --desc-color: rgba(255, 255, 255, 0.81);
-  --body-color: #080d10;
-  --bg-color: #ffffff08;
+  --body-color: #000000;
+  --bg-color: #101010;
   --bg100-color: #ffffff;
   --smoke-color: #f6f5f3;
   --smoke-color2: #fff4ef;
@@ -24,13 +24,13 @@
   --border-color: #e3e3e3;
 
   /* Font Family */
-  --title-font: 'Syne', sans-serif;
+  --title-font: "Syne", sans-serif;
   --body-font: "Poppins", sans-serif;
   --ex-font: "Playfair", serif;
 
   /* Font Sizes */
   --h1-font-size: 72px;
-  --h2-font-size: 46px;
+  --h2-font-size: 54px;
   --h3-font-size: 32px;
   --h4-font-size: 26px;
   --h5-font-size: 22px;
@@ -165,7 +165,7 @@ body {
   }
 
   .space {
-    @apply py-16 md:py-24 lg:py-[120px];
+    @apply py-16 md:py-24 lg:py-[100px];
   }
 
   .hero-desc {

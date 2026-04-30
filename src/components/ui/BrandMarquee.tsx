@@ -53,54 +53,67 @@ export default function BrandMarquee({
 
   if (images.length === 0) return null;
 
+  const renderRow = (rowKey: string, rtl = false) => (
+    <div className="relative isolate min-w-0 w-full">
+      <div
+        className={clsx(
+          "pointer-events-none absolute inset-y-0 left-0 z-10 w-14 sm:w-20 md:w-28",
+          edgeFadeL,
+        )}
+        aria-hidden
+      />
+      <div
+        className={clsx(
+          "pointer-events-none absolute inset-y-0 right-0 z-10 w-14 sm:w-20 md:w-28",
+          edgeFadeR,
+        )}
+        aria-hidden
+      />
+      <Slider
+        key={`${rowKey}-${slidesToShow}`}
+        infinite
+        slidesToShow={slidesToShow}
+        slidesToScroll={1}
+        autoplay
+        speed={8000}
+        autoplaySpeed={0}
+        cssEase="linear"
+        arrows={false}
+        draggable={false}
+        pauseOnHover={false}
+        rtl={rtl}
+      >
+        {images.map((src, i) => (
+          <div key={`${rowKey}-${i}`} className="flex items-center justify-center">
+            <Image
+              src={src}
+              alt={`Brand logo ${i + 1}`}
+              width={120}
+              height={30}
+              className={clsx("h-[35px] w-full object-cover", imageClass)}
+            />
+          </div>
+        ))}
+      </Slider>
+    </div>
+  );
+
   return (
-    <div className={clsx("w-full max-w-full min-w-0", className)}>
-      <div className="mx-auto mb-12 max-w-[700px] text-center">
+    <div
+      className={clsx(
+        "w-full max-w-full min-w-0 relative overflow-hidden",
+        className,
+      )}
+    >
+      <div className="mx-auto mb-16 max-w-[700px] text-center">
         <p className={`text-h6 leading-normal capitalize ${headingClass}`}>
           Trusted by 100+ Founders & Teams Worldwide
         </p>
       </div>
 
-      <div className="relative isolate min-w-0 w-full">
-        <div
-          className={clsx(
-            "pointer-events-none absolute inset-y-0 left-0 z-10 w-14 sm:w-20 md:w-28",
-            edgeFadeL,
-          )}
-          aria-hidden
-        />
-        <div
-          className={clsx(
-            "pointer-events-none absolute inset-y-0 right-0 z-10 w-14 sm:w-20 md:w-28",
-            edgeFadeR,
-          )}
-          aria-hidden
-        />
-        <Slider
-          key={slidesToShow}
-          infinite
-          slidesToShow={slidesToShow}
-          slidesToScroll={1}
-          autoplay
-          speed={5000}
-          autoplaySpeed={0}
-          cssEase="linear"
-          arrows={false}
-          draggable={false}
-          pauseOnHover={false}
-        >
-          {images.map((src, i) => (
-            <div key={i} className="flex items-center justify-center">
-              <Image
-                src={src}
-                alt={`Brand logo ${i + 1}`}
-                width={120}
-                height={50}
-                className={clsx("h-[40px] object-cover", imageClass)}
-              />
-            </div>
-          ))}
-        </Slider>
+      <div className="space-y-6">
+        {renderRow("top-row", true)}
+        {renderRow("bottom-row", false)}
       </div>
     </div>
   );
