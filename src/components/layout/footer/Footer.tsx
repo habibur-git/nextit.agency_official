@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Building2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import type { IconType } from "react-icons";
 import {
   FaBehance,
@@ -13,13 +14,14 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
-import { GoDownload } from "react-icons/go";
+import { FiCheck, FiCopy } from "react-icons/fi";
 
 export type FooterColumnLink = {
   text: string;
   href: string;
   className?: string;
   icon?: IconType;
+  copyValue?: string;
 };
 
 const NAV_LINKS = [
@@ -28,13 +30,6 @@ const NAV_LINKS = [
   { text: "Services", href: "/services" },
   { text: "Works", href: "/work" },
   { text: "Contact", href: "/contact" },
-] as const;
-
-const Services = [
-  { text: "Research And Strategy", href: "/services" },
-  { text: "Corporate Identity", href: "/services" },
-  { text: "UX/UI Design", href: "/services" },
-  { text: "Design Support", href: "/services" },
 ] as const;
 
 const SOCIAL_LINKS: readonly FooterColumnLink[] = [
@@ -58,46 +53,77 @@ const LEGAL_LINKS = [
 const LOCATION_DATA = [
   {
     id: 1,
-    img: "/assets/img/bd.webp",
-    country: "Bangladesh",
-    code: "BD",
-    office: "Dhaka",
+    displayTitle: "Dhaka",
     address:
       "H/1, Road-6, Duaripara Bazar, <br /> Rupnagar, Mirpur, Dhaka-1216",
     phone: "+8801630-253650",
   },
   {
     id: 2,
-    img: "/assets/img/ml.jpg",
-    country: "Malaysia",
-    code: "MY",
-    office: "Malaysia",
+    displayTitle: "Malaysia",
     address: "Seri Kembangan, Selangor, <br /> Malaysia 43300",
     phone: "+8801690-274952",
   },
   {
     id: 3,
-    img: "/assets/img/ku.webp",
-    country: "Kuwait",
-    code: "KW",
-    office: "Kuwait",
+    displayTitle: "Kuwait",
     address:
       "Al-Mubarakah: Fahad Al-Basman Heritage Complex, <br /> Ground Floor, Shop No. 16",
     phone: "+8801690-274952",
   },
 ] as const;
 
-const getPlainAddress = (address: string) =>
-  address
-    .replace(/<br\s*\/?>/gi, ", ")
-    .replace(/\s+/g, " ")
-    .trim();
+function addressLines(html: string) {
+  return html
+    .split(/<br\s*\/?>/i)
+    .map((s) =>
+      s
+        .replace(/<[^>]+>/g, "")
+        .replace(/\s+/g, " ")
+        .trim(),
+    )
+    .filter(Boolean);
+}
+
+const CONTACT_LINKS: FooterColumnLink[] = [
+  {
+    text: "Book a Meeting",
+    href: "https://cal.com/devionex/15min",
+  },
+  {
+    text: "WhatsApp Us",
+    href: "https://wa.me/message/ZAW5DMQBOXWVL1",
+  },
+  {
+    text: "info@devionex.com",
+    href: "mailto:info@devionex.com",
+    className: "text-white font-medium",
+    copyValue: "info@devionex.com",
+  },
+];
 
 const FOOTER_COLUMNS = [
   { title: "Navigation", links: NAV_LINKS },
-  { title: "Services", links: Services },
-  { title: "Follow Us", links: SOCIAL_LINKS },
+  { title: "Socials", links: SOCIAL_LINKS },
+  { title: "Let's Talk", links: CONTACT_LINKS },
 ] as const;
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
 
 function FooterColumn({
   title,
@@ -106,21 +132,32 @@ function FooterColumn({
   title: string;
   links: readonly FooterColumnLink[];
 }) {
+  const [copiedLink, setCopiedLink] = useState<string | null>(null);
+
+  const handleCopy = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedLink(value);
+      setTimeout(() => setCopiedLink(null), 2000);
+    } catch {}
+  };
+
   return (
-    <div className="min-w-0">
-      <h6 className="text-[15px] font-semi-bold uppercase tracking-[0.08em] text-title">
+    <div className="flex flex-col min-w-0">
+      <h6 className="text-sm font-semibold uppercase tracking-widest text-zinc-100 mb-6">
         {title}
       </h6>
-
-      <ul className="mt-5 flex flex-col gap-3 p-0 min-w-0">
+      <ul className="flex flex-col gap-4 p-0 m-0">
         {links.map((link) => {
           const Icon = link.icon;
+          const isCopied = copiedLink === link.copyValue;
+
           return (
-            <li key={link.href + link.text} className="w-max">
+            <li key={link.href + link.text} className="flex items-center group">
               <Link
                 href={link.href}
                 className={cn(
-                  "group inline-flex items-center gap-2.5 font-body text-base text-title/70 transition-colors hover:text-title",
+                  "inline-flex items-center gap-3 text-base text-zinc-400 transition-all duration-300 hover:text-white hover:translate-x-1",
                   link.className,
                 )}
                 {...(link.href.startsWith("http") && {
@@ -128,16 +165,26 @@ function FooterColumn({
                   rel: "noopener noreferrer",
                 })}
               >
-                {Icon ? (
-                  <span
-                    className="inline-flex shrink-0 text-title/55 transition-colors group-hover:text-title"
-                    aria-hidden
-                  >
-                    <Icon className="size-[17px]" />
-                  </span>
-                ) : null}
+                {Icon && (
+                  <Icon className="size-[18px] text-zinc-500 group-hover:text-white transition-colors" />
+                )}
                 {link.text}
               </Link>
+
+              {link.copyValue && (
+                <button
+                  type="button"
+                  onClick={() => handleCopy(link.copyValue!)}
+                  aria-label={`Copy ${link.text}`}
+                  className="ml-3 flex items-center justify-center rounded-md p-1.5 text-zinc-500 transition-all hover:bg-zinc-800 hover:text-white"
+                >
+                  {isCopied ? (
+                    <FiCheck className="size-4 text-green-400" />
+                  ) : (
+                    <FiCopy className="size-4" />
+                  )}
+                </button>
+              )}
             </li>
           );
         })}
@@ -148,129 +195,143 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <footer className="bg-bg pt-16 pb-8">
-      <div className="container">
-        <div className="flex justify-between items-center pb-8 border-b border-title/10 mb-12">
-          <Image
-            width={625}
-            height={92}
-            src="/assets/img/logo.svg"
-            alt="NextIT"
-            priority={false}
-            className="h-16 w-auto"
-          />
-          <div className="">
-            <Link href="mailto:info@nextit.agency" className="text-h5 mb-0">
-              info@nextit.agency
-            </Link>
+    <footer className="relative bg-zinc-950 text-zinc-300 pt-24 overflow-hidden border-t border-zinc-800/50">
+      <div className="container relative z-10 mx-auto px-6 max-w-7xl">
+        {/* Top Section: CTA & Columns Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-20"
+        >
+          {/* Brand Intro / CTA */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-1 lg:col-span-4 lg:pr-8"
+          >
+            <Image
+              width={1200}
+              height={200}
+              src="/assets/img/logo.svg"
+              alt="DevioNex"
+              priority={false}
+              className="h-12 w-min mb-6"
+            />
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">
+              Ready to build <br className="hidden lg:block" /> something
+              amazing?
+            </h2>
+            <p className="text-zinc-400 text-lg mb-8 max-w-md">
+              {"Let's"} create digital experiences that elevate your brand and
+              drive results.
+            </p>
+          </motion.div>
+
+          {/* Navigation Columns */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-1 lg:col-span-8"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+              {FOOTER_COLUMNS.map((col) => (
+                <FooterColumn
+                  key={col.title}
+                  title={col.title}
+                  links={col.links}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      <div className="bg-bg pt-16">
+        <div className="mb-24">
+          <div className="container">
+            <h6 className="mb-8 border-b border-zinc-800/80 pb-4 text-sm font-semibold uppercase tracking-widest text-zinc-100">
+              Our Locations
+            </h6>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {LOCATION_DATA.map((item) => (
+                <article
+                  key={item.id}
+                  className={cn(
+                    "relative rounded-2xl border border-transparent bg-[#FDFBF7] p-2 pr-14 shadow-lg transition-shadow hover:shadow-xl",
+                    "dark:border-zinc-800/90 dark:bg-zinc-900/95 dark:shadow-black/30",
+                  )}
+                >
+                  <div className="flex flex-col gap-4 sm:flex-row h-full">
+                    <div className="flex size-29 shrink-0 items-center justify-center rounded-xl bg-[#FFF9F0] dark:bg-zinc-950 dark:ring-1 dark:ring-zinc-700/60 h-full">
+                      <Building2
+                        className="size-14 text-[#F4C458] dark:text-amber-300"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1 py-3">
+                      <h5 className="font-title font-semi-bold">
+                        {item.displayTitle}
+                      </h5>
+                      <div className="mt-2 h-px w-12 rounded-full bg-[#F4C458] dark:bg-amber-300" />
+                      <div className="mt-3 space-y-1 text-sm text-[#333] dark:text-zinc-400">
+                        {addressLines(item.address).map((line, i) => (
+                          <p key={`${item.id}-${i}`}>{line}</p>
+                        ))}
+                      </div>
+                      <Link
+                        href={`tel:${item.phone.replace(/\s/g, "")}`}
+                        className="mt-4 block text-sm font-bold text-black hover:underline dark:text-zinc-100"
+                      >
+                        {item.phone}
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="flex flex-wrap md:flex-nowrap justify-between gap-6"
-        >
-          {FOOTER_COLUMNS.map((col) => (
-            <FooterColumn key={col.title} title={col.title} links={col.links} />
-          ))}
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mt-12 border-t border-title/10 pt-8"
-        >
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {LOCATION_DATA.map((item) => (
-              <div
-                key={item.id}
-                className="relative rounded-xl bg-transparent pr-2 transition-colors lg:pr-6 lg:not-last:border-r lg:not-last:border-title/10"
+        {/* Large Background Logo Overlay */}
+        <div className="relative mb-16 flex justify-center pointer-events-none select-none">
+          <Image
+            width={1200}
+            height={200}
+            src="/assets/img/foo.svg"
+            alt="DevioNex"
+            priority={false}
+            className="w-full h-auto max-w-5xl"
+          />
+        </div>
+
+        {/* Bottom Section: Copyright & Legal */}
+        <div className="py-8 border-t border-zinc-800/80">
+          <div className="container flex flex-col md:flex-row items-center justify-between gap-6 ">
+            <p className="text-sm text-zinc-500 text-center md:text-left">
+              © 2024 - {new Date().getFullYear()}{" "}
+              <Link
+                href="https://devionex.com"
+                className="font-medium text-zinc-300 hover:text-white transition-colors"
               >
-                <div className="mb-2 inline-flex items-center gap-2 text-theme">
-                  <Building2 className="size-4" strokeWidth={1.9} />
-                  <span className="text-[11px] font-semi-bold uppercase tracking-[0.12em] text-theme/85">
-                    {item.code}
-                  </span>
-                </div>
+                DevioNex
+              </Link>
+              . All Rights Reserved.
+            </p>
 
-                <div className="flex items-start justify-between gap-3 mt-4">
-                  <div className="min-w-0">
-                    <h5 className="text-h5 font-black text-white">
-                      {item.office}
-                    </h5>
-                    <p className="mt-2 line-clamp-2 text-sm leading-snug text-white/65">
-                      {getPlainAddress(item.address)}
-                    </p>
-                    <Link
-                      href={`tel:${item.phone.replace(/\s/g, "")}`}
-                      className="mt-3 inline-block text-base font-semi-bold text-white/80 transition-colors hover:text-theme"
-                    >
-                      {item.phone}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              {LEGAL_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-zinc-500 transition-colors hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className=" z-1 relative flex flex-wrap sm:items-center justify-between gap-6 border-t border-title/10 pt-8 mt-12"
-        >
-          <div>
-            <Link
-              href="#"
-              download
-              aria-label="Download Company Deck (PDF, 3 MB)"
-              className="group flex max-w-md items-center gap-4 rounded-xl py-1 text-left transition-opacity hover:opacity-90"
-            >
-              <span
-                className="flex size-12 shrink-0 items-center justify-center rounded-full bg-secondary text-title"
-                aria-hidden
-              >
-                <GoDownload className="size-5" />
-              </span>
-              <span className="min-w-max">
-                <span className="block font-title text-[17px] font-semibold text-white">
-                  Company Deck
-                </span>
-                <span className="mt-0.5 block font-body text-sm text-white/55">
-                  Deck PDF
-                </span>
-              </span>
-            </Link>
-          </div>
-          <p className="font-body text-[15px] text-white/80">
-            © 2024 - {new Date().getFullYear()}{" "}
-            <Link
-              href="https://NextIT.com"
-              className="font-semibold text-secondary underline-offset-2 hover:text-title hover:underline"
-            >
-              NextIT{" "}
-            </Link>
-            | All Rights Reserved.
-          </p>
-          <ul className="flex flex-wrap sm:items-center sm:justify-center gap-4">
-            {LEGAL_LINKS.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="font-body text-[15px] text-white/80 transition-colors hover:text-white "
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
