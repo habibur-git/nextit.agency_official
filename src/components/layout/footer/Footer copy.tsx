@@ -64,7 +64,7 @@ const LOCATION_DATA = [
     office: "Dhaka",
     address:
       "H/1, Road-6, Duaripara Bazar, <br /> Rupnagar, Mirpur, Dhaka-1216",
-    phone: "+8801630-253650",
+    phone: "+8801607399373",
   },
   {
     id: 2,
