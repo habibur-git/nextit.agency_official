@@ -88,7 +88,7 @@ function addressLines(html: string) {
 const CONTACT_LINKS: FooterColumnLink[] = [
   {
     text: "Book a Meeting",
-    href: "https://cal.com/devionex/15min",
+    href: "https://cal.com/nextit/15min",
   },
   {
     text: "WhatsApp Us",
@@ -214,7 +214,7 @@ export default function Footer() {
               width={1200}
               height={200}
               src="/assets/img/logo.svg"
-              alt="DevioNex"
+              alt="nextit"
               priority={false}
               className="h-12 w-min mb-6"
             />
@@ -298,7 +298,7 @@ export default function Footer() {
             width={1200}
             height={200}
             src="/assets/img/foo.svg"
-            alt="DevioNex"
+            alt="nextit"
             priority={false}
             className="w-full h-auto max-w-5xl"
           />
@@ -313,7 +313,7 @@ export default function Footer() {
                 href="https://nextit.agency"
                 className="font-medium text-zinc-300 hover:text-white transition-colors"
               >
-                DevioNex
+                Nextit.agency
               </Link>
               . All Rights Reserved.
             </p>

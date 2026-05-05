@@ -44,25 +44,25 @@ export const contactInfo: ContactInfo = {
 export const socialMediaLinks: SocialMediaLink[] = [
   {
     id: 1,
-    href: "https://clutch.co/profile/devionex",
+    href: "https://clutch.co/profile/nextit",
     label: "Follow us on Clutch",
     image: "/assets/img/icon/clutch.svg",
   },
   {
     id: 2,
-    href: "https://www.behance.net/devionex",
+    href: "https://www.behance.net/nextit",
     label: "Follow us on Behance",
     icon: FaBehance,
   },
   {
     id: 3,
-    href: "https://dribbble.com/devionex",
+    href: "https://dribbble.com/nextit",
     label: "Follow us on Dribbble",
     icon: FaDribbble,
   },
   {
     id: 4,
-    href: "https://www.linkedin.com/company/devionex",
+    href: "https://www.linkedin.com/company/nextit",
     label: "Follow us on LinkedIn",
     icon: FaLinkedinIn,
   },
