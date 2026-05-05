@@ -9,7 +9,6 @@ import { useState } from "react";
 import type { IconType } from "react-icons";
 import {
   FaBehance,
-  FaDribbble,
   FaFacebook,
   FaInstagram,
   FaLinkedinIn,
@@ -35,13 +34,25 @@ const NAV_LINKS = [
 const SOCIAL_LINKS: readonly FooterColumnLink[] = [
   {
     text: "LinkedIn",
-    href: "https://www.linkedin.com/company/NextIT",
+    href: "https://www.linkedin.com/company/nextit-agency",
     icon: FaLinkedinIn,
   },
-  { text: "Behance", href: "https://www.youtube.com", icon: FaBehance },
-  { text: "Dribbble", href: "https://www.instagram.com", icon: FaDribbble },
-  { text: "Instagram", href: "https://www.instagram.com", icon: FaInstagram },
-  { text: "Facebook", href: "https://www.instagram.com", icon: FaFacebook },
+  {
+    text: "Behance",
+    href: "https://www.behance.net/nextitagency",
+    icon: FaBehance,
+  },
+  // { text: "Dribbble", href: "https://dribbble.com/nextitagency", icon: FaDribbble },
+  {
+    text: "Instagram",
+    href: "https://www.instagram.com/nextit.agency",
+    icon: FaInstagram,
+  },
+  {
+    text: "Facebook",
+    href: "https://www.facebook.com/nextit.agency",
+    icon: FaFacebook,
+  },
 ];
 
 const LEGAL_LINKS = [
