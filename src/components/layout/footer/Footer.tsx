@@ -95,10 +95,10 @@ const CONTACT_LINKS: FooterColumnLink[] = [
     href: "https://wa.me/message/ZAW5DMQBOXWVL1",
   },
   {
-    text: "info@devionex.com",
-    href: "mailto:info@devionex.com",
+    text: "info@nextit.agency",
+    href: "mailto:info@nextit.agency",
     className: "text-white font-medium",
-    copyValue: "info@devionex.com",
+    copyValue: "info@nextit.agency",
   },
 ];
 
@@ -310,7 +310,7 @@ export default function Footer() {
             <p className="text-sm text-zinc-500 text-center md:text-left">
               © 2024 - {new Date().getFullYear()}{" "}
               <Link
-                href="https://devionex.com"
+                href="https://nextit.agency"
                 className="font-medium text-zinc-300 hover:text-white transition-colors"
               >
                 DevioNex
