@@ -1,4 +1,5 @@
 import Pricing from "@/components/common/Pricing";
+import Booker from "@/components/common/BookaCall";
 import Footer from "@/components/layout/footer/Footer";
 import Header from "@/components/layout/header/Header";
 import Faq from "@/components/ui/Faq";
@@ -45,6 +46,7 @@ export default async function Home() {
         <Testimonials />
 
         <Faq faqKey="home" />
+        <Booker />
       </main>
 
       <Footer />

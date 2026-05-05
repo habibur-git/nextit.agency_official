@@ -107,13 +107,13 @@ export default function Hero() {
             {/* Buttons */}
             <div className="mt-12 flex flex-wrap items-center gap-5">
               <Button
-                href="https://cal.com/NextIT/15min"
+                href="https://calendly.com/nextit-info/30min"
                 target="_blank"
                 label="Book a Call"
                 variant="primary"
               />
               <Button
-                href="https://wa.me/message/ZAW5DMQBOXWVL1"
+                href="https://wa.me/8801607399373"
                 label="Let’s Talk"
                 variant="link"
                 icon={<IoLogoWhatsapp className="text-xl text-[#25D366]" />}

@@ -50,7 +50,7 @@ export default function Hero() {
                 variant="primary"
               />
               <Button
-                href="https://cal.com/NextIT/15min"
+                href="https://calendly.com/nextit-info/30min"
                 target="_blank"
                 label="Book a Consultation"
                 variant="link"
