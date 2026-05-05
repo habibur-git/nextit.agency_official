@@ -62,14 +62,14 @@ const LOCATION_DATA = [
     id: 2,
     displayTitle: "Malaysia",
     address: "Seri Kembangan, Selangor, <br /> Malaysia 43300",
-    phone: "+8801690-274952",
+    phone: "+8801607399373",
   },
   {
     id: 3,
     displayTitle: "Kuwait",
     address:
       "Al-Mubarakah: Fahad Al-Basman Heritage Complex, <br /> Ground Floor, Shop No. 16",
-    phone: "+8801690-274952",
+    phone: "+8801607399373",
   },
 ] as const;
 

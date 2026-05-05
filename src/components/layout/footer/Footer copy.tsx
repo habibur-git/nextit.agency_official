@@ -73,7 +73,7 @@ const LOCATION_DATA = [
     code: "MY",
     office: "Malaysia",
     address: "Seri Kembangan, Selangor, <br /> Malaysia 43300",
-    phone: "+8801690-274952",
+    phone: "+8801607399373",
   },
   {
     id: 3,
@@ -83,7 +83,7 @@ const LOCATION_DATA = [
     office: "Kuwait",
     address:
       "Al-Mubarakah: Fahad Al-Basman Heritage Complex, <br /> Ground Floor, Shop No. 16",
-    phone: "+8801690-274952",
+    phone: "+8801607399373",
   },
 ] as const;
 
