@@ -43,8 +43,9 @@ export default function Pricing() {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="flex flex-col gap-2 mb-6"
           >
-            <h2 className="text-center md:text-left capitalize font-normal">
-              Plans & <strong>pricing</strong> <br /> that match how you ship
+            <h2 className="text-center md:text-left capitalize font-semi-bold">
+              Transparent Pricing That <br />
+              Matches Your Business Goals
             </h2>
           </motion.div>
 

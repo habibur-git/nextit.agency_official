@@ -57,13 +57,13 @@ export default function ProcessSection({ data }: WhyProps) {
                       />
                     </span>
                     <h4 className="font-semibold text-theme">{item.title}</h4>
-                    <p className="max-w-[260px] text-sm leading-relaxed text-white/55 md:text-[15px]">
+                    <p className="text-sm leading-relaxed text-white/55 md:text-[15px]">
                       {item.description}
                     </p>
                   </>
                 ) : (
                   <>
-                    <p className="max-w-[260px] text-sm leading-relaxed text-white/55 md:text-[15px]">
+                    <p className="text-sm leading-relaxed text-white/55 md:text-[15px]">
                       {item.description}
                     </p>
                     <h4 className="font-semibold text-theme">{item.title}</h4>

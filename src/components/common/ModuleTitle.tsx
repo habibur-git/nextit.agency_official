@@ -151,7 +151,7 @@ export const ModuleTitle: React.FC<ModuleTitleProps> = ({
   if (variant === "v2") {
     return (
       <MotionWrapper
-        className={`flex flex-wrap justify-between gap-6 mb-16 ${className}`}
+        className={`flex flex-col lg:flex-row justify-between gap-6 mb-16 ${className}`}
       >
         <div className="max-w-[850px] space-y-2">
           {suppertitle && (

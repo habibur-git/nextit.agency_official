@@ -7,10 +7,10 @@ import { IoLogoWhatsapp } from "react-icons/io";
 
 /* ------------------ Stats Data ------------------ */
 const STATS = [
-  { value: 120, suffix: "+", label: "Project Complete" },
-  { value: 60, suffix: "+", label: "Happy Clients" },
-  { value: 5, suffix: "+", label: "Years of experience" },
-  { value: 15, suffix: "+", label: "Team members" },
+  { value: 200, suffix: "+", label: "Projects Completed" },
+  { value: 100, suffix: "+", label: "Happy Clients" },
+  { value: 3, suffix: "+", label: "Years of experience" },
+  { value: 3, suffix: "+", label: "Multiple Countries Served" },
 ] as const;
 
 /* ------------------ Count Hook ------------------ */
@@ -40,10 +40,10 @@ function useCountUp(end: number, duration = 1200) {
 /* ------------------ Component ------------------ */
 export default function Hero() {
   return (
-    <section className="relative flex h-full lg:h-screen w-full overflow-hidden bg-[#050505] py-16">
+    <section className="relative flex h-full lg:h-screen w-full overflow-hidden py-16">
       {/* Background Effects */}
 
-      <div className="absolute inset-x-0 bottom-0 h-80 bg-[radial-gradient(ellipse_at_bottom,rgba(255,207,1,0.6),rgba(255,207,1,0.25)_40%,transparent_75%)] blur-xl" />
+      <div className="absolute inset-x-0 bottom-0 h-80 bg-[radial-gradient(ellipse_at_bottom,rgba(255,207,1,0.6),rgba(255,207,1,0.25)_40%,transparent_75%)] blur-xl opacity-40" />
 
       <div className="container flex flex-col items-center justify-center h-full">
         <motion.div
@@ -61,9 +61,9 @@ export default function Hero() {
               x: { duration: 0.35, delay: 0.2 },
               y: { duration: 3.4, repeat: Infinity, ease: "easeInOut" },
             }}
-            className="absolute left-0 top-1/5 translate-x-1/2 rounded-full border border-[#f47f63]/35 bg-theme px-4 py-1 text-[11px] font-semibold text-body shadow-[0_10px_30px_rgba(244,127,99,0.3)] hidden md:block"
+            className="absolute left-0 top-1/5 translate-x-1/2 rounded-full bg-white px-4 py-1 text-[11px] font-semibold text-body hidden md:block"
           >
-            Agency
+            Creative
           </motion.span>
           <motion.span
             initial={{ opacity: 0, x: 10, y: 10 }}
@@ -77,31 +77,17 @@ export default function Hero() {
           >
             Expert
           </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: 8, y: 10 }}
-            animate={{ opacity: 1, x: 0, y: [0, -7, 0] }}
-            transition={{
-              opacity: { duration: 0.35, delay: 0.5 },
-              x: { duration: 0.35, delay: 0.5 },
-              y: { duration: 3.7, repeat: Infinity, ease: "easeInOut" },
-            }}
-            className="absolute bottom-12 right-[20%] rounded-full border border-[#e9ef8f]/25 bg-[#e9ef8f] px-4 py-1 text-[11px] font-semibold text-black shadow-[0_10px_30px_rgba(233,239,143,0.3)] hidden md:block"
-          >
-            Innovative
-          </motion.span>
 
           {/* Content */}
           <div className="flex w-full flex-col items-center justify-center text-center h-full mt-12">
-            <h1 className="text-balance text-[44px] font-semibold leading-[1.08] tracking-[-0.02em] text-white sm:text-[56px] md:text-[74px]">
-              Grow Your Business <br /> with {""}
-              <strong className="font-semi-bold">
-                Powerful Branding <br />& Smart Marketing
-              </strong>
+            <h1 className="text-balance text-[44px] font-semibold leading-[1.08] tracking-[-0.02em] text-white sm:text-[56px] md:text-[56px] max-w-[70%]">
+              Your Growth Partner for Branding, Marketing & Web Development —
+              Built to Grow Your Business Globally
             </h1>
 
-            <h2 className="mx-auto mt-5 text-[17px] leading-relaxed text-white/65">
-              We help businesses attract customers, build strong brands, and
-              increase sales through high-converting strategies.
+            <h2 className="mx-auto mt-5 text-[20px] leading-normal text-white/65">
+              We help businesses grow through strategic branding, digital
+              marketing, and web solutions that convert.
             </h2>
 
             {/* Buttons */}
@@ -109,12 +95,12 @@ export default function Hero() {
               <Button
                 href="https://calendly.com/nextit-info/30min"
                 target="_blank"
-                label="Book a Call"
+                label="Get a Free Strategy Session"
                 variant="primary"
               />
               <Button
-                href="https://wa.me/8801607399373"
-                label="Let’s Talk"
+                href="/work"
+                label="See Our Work"
                 variant="link"
                 icon={<IoLogoWhatsapp className="text-xl text-[#25D366]" />}
                 slideIconRotate={-30}
@@ -136,7 +122,7 @@ export default function Hero() {
                   className="group flex flex-col items-center justify-center text-center transition-transform duration-300 hover:-translate-y-1"
                 >
                   {/* Number */}
-                  <h3 className="text-2xl sm:text-3xl md:text-[40px] font-semibold text-white tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl md:text-[44px] font-semibold text-white tracking-tight">
                     {count}
                     {stat.suffix}
                   </h3>

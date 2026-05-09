@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import Pricing from "@/components/common/Pricing";
 import Booker from "@/components/common/BookaCall";
 import Footer from "@/components/layout/footer/Footer";
@@ -14,8 +16,37 @@ import { fetchWorkList } from "@/lib/work-api";
 
 export const dynamic = "force-dynamic";
 
+export const metadata: Metadata = {
+  title:
+    "Branding, Digital Marketing & Web Development Agency | Next IT",
+
+  description:
+    "Next IT is a full-service branding and digital marketing agency helping businesses worldwide grow through brand identity design, web development, social media management, e-commerce solutions, and performance marketing.",
+
+  alternates: {
+    canonical: "https://nextit.agency/",
+  },
+
+  openGraph: {
+    title: "Next IT - Global Branding, Marketing & Web Agency",
+    description:
+      "Next IT is a full-service branding and digital marketing agency helping businesses worldwide grow through brand identity design, web development, social media management, e-commerce solutions, and performance marketing.",
+    url: "https://nextit.agency/",
+    siteName: "Next IT",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Next IT - Global Branding, Marketing & Web Agency",
+    description:
+      "Next IT is a full-service branding and digital marketing agency helping businesses worldwide grow through brand identity design, web development, social media management, e-commerce solutions, and performance marketing.",
+  },
+};
+
 export default async function Home() {
   let workItems: Awaited<ReturnType<typeof fetchWorkList>> = [];
+
   try {
     workItems = await fetchWorkList();
   } catch (error) {
@@ -30,6 +61,7 @@ export default async function Home() {
         <Hero />
         <AboutUs />
         <Services />
+
         <FilterPortfolio
           basePath="/work"
           filterVariant="reference"

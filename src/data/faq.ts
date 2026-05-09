@@ -12,39 +12,39 @@ export const faqData: FaqDataMap = {
   home: [
     {
       id: 1,
-      question: "Why should I choose Next IT for my business?",
+      question: "How much does it cost to hire a branding agency?",
       answer:
-        "Next IT is a professional branding, digital marketing, and web development agency focused on delivering high-quality solutions. With experience working with 200+ clients, our team combines creativity, strategy, and technology to help businesses grow and build strong brands.",
+        "The cost of branding services depends on the project scope, deliverables, and complexity. A complete brand identity package including logo design, brand guidelines, and visual identity systems can range from a few hundred to several thousand dollars. Next IT offers flexible pricing tailored for startups, SMEs, and enterprise businesses.",
     },
     {
       id: 2,
-      question: "Do you work with international clients?",
+      question: "What digital marketing services does Next IT provide?",
       answer:
-        "Yes. Next IT provides global-standard branding, marketing, and website development services and works with clients from different countries and industries.",
+        "Next IT provides a full range of digital marketing services including Facebook Ads, Google Ads, SEO, social media management, content marketing, email marketing, and conversion optimization. Every campaign is tailored to your business goals and target audience.",
     },
     {
       id: 3,
-      question: "How do you ensure the quality of your work?",
+      question: "How long does it take to build a website?",
       answer:
-        "Our team follows a structured work process that includes research, strategy, design, development, review, and optimization. Every project is carefully handled by experienced designers, developers, and marketing specialists.",
+        "A standard business website usually takes between 2–4 weeks from design approval to launch. Larger e-commerce stores and custom web platforms may require 4–8 weeks depending on features, integrations, and revision requirements.",
     },
     {
       id: 4,
-      question: "How can I start working with Next IT?",
+      question: "Do you work with international clients?",
       answer:
-        "You can easily start by contacting our team through our website, email, or hotline. We will discuss your project requirements and provide a customized solution that fits your business goals.",
+        "Yes. Next IT works with businesses worldwide and delivers global-standard branding, website development, and digital marketing solutions across multiple industries.",
     },
     {
       id: 5,
-      question: "What is the delivery time and working system?",
+      question: "How does Next IT ensure project quality?",
       answer:
-        "Delivery time depends on the project type and scope. Small design projects may take a few days, while larger projects like branding or website development may take more time. We maintain a clear workflow and keep clients updated throughout the project.",
+        "Every project follows a structured process including research, strategy, design, development, testing, and optimization. Our multidisciplinary team ensures quality, consistency, and performance at every stage.",
     },
     {
       id: 6,
-      question: "What is the payment process?",
+      question: "What is the payment and project workflow?",
       answer:
-        "Next IT follows a transparent payment system. Usually, a partial advance payment is required to start the project, and the remaining payment is completed after the project delivery or according to the agreed project milestones.",
+        "Projects usually begin with an advance payment followed by milestone-based payments depending on the scope. We maintain transparent communication, clear timelines, and regular updates throughout the entire process.",
     },
   ],
   aboutus: [

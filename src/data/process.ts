@@ -1,39 +1,39 @@
 export const Process = {
   home: {
     suppertitle: "Our process",
-    title: "**How we work**",
+    title: "**Our Proven 5-Step Process — From Brief to Business Growth**",
     subtitle:
-      "A simple, transparent process focused on delivering measurable results.",
+      "We follow a structured, transparent workflow that keeps every project on time, on brand, and on budget — while keeping you informed and in control from start to finish.",
     items: [
       {
         id: 1,
-        title: "Discussion",
+        title: "Discovery & Consultation",
         description:
-          "We understand your business, goals, and target audience to set the right direction",
+          "We deeply understand your business, goals, audience, and competitive landscape before any execution begins.",
       },
       {
         id: 2,
-        title: "Planning",
+        title: "Strategy & Planning",
         description:
-          "We create a customized strategy designed for maximum growth and ROI.",
+          "A customized roadmap tailored to your industry, objectives, marketing channels, and growth opportunities.",
       },
       {
         id: 3,
-        title: "Execution",
+        title: "Creative Execution",
         description:
-          "Our team designs, develops, and launches your campaigns with precision.",
+          "Designers, developers, and marketers execute with precision while keeping you updated at every milestone.",
       },
       {
         id: 4,
-        title: "Reporting",
+        title: "Launch & Deployment",
         description:
-          "We provide clear performance reports so you can see exactly what’s working.",
+          "We manage launches, deployments, and campaign activations smoothly with zero-compromise technical execution.",
       },
       {
         id: 5,
-        title: "Growth",
+        title: "Optimization & Growth",
         description:
-          "We optimize and scale your campaigns to increase leads and sales continuously.",
+          "Continuous analysis, optimization, and scaling strategies designed for long-term compounding business growth.",
       },
     ],
   },

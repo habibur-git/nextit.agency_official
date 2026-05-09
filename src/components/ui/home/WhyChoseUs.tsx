@@ -2,6 +2,7 @@ import { ModuleTitle } from "@/components/common/ModuleTitle";
 import {
   Bolt,
   CircleDollarSign,
+  Globe,
   Handshake,
   Target,
   TrendingUp,
@@ -10,40 +11,45 @@ import Image from "next/image";
 
 const FEATURE_ITEMS = [
   {
-    icon: Target,
-    title: "Result-Driven Strategy",
+    icon: TrendingUp,
+    title: "Results You Can Measure",
     description:
-      "Every campaign and build decision is aligned with clear business goals and measurable outcomes.",
+      "Every campaign, design decision, and line of code is tied to measurable business goals, KPIs, and transparent reporting.",
   },
-  {
-    icon: Target,
-    title: "Result-Driven Strategy",
-    description:
-      "Every campaign and build decision is aligned with clear business goals and measurable outcomes.",
-  },
+
   {
     icon: Bolt,
-    title: "Fast Delivery",
+    title: "Fast Turnaround, Zero Compromises",
     description:
-      "Lean workflow and agile execution help us launch projects quickly without compromising quality.",
+      "Our agile workflow helps launch projects faster than industry standards without compromising quality or execution.",
   },
+
   {
     icon: CircleDollarSign,
-    title: "Affordable Pricing",
+    title: "Flexible Pricing for Every Stage",
     description:
-      "Flexible plans designed to maximize value for startups and growing businesses at every stage.",
+      "Pricing packages tailored to maximize value for startups, SMEs, and scaling enterprises at every growth stage.",
   },
+
   {
-    icon: TrendingUp,
-    title: "Smart Marketing Approach",
+    icon: Target,
+    title: "Strategy-First, Always",
     description:
-      "Data-led marketing strategies that improve visibility, conversions, and long-term growth.",
+      "We research your market, competitors, and audience before execution to ensure smarter, more effective decisions.",
   },
+
   {
     icon: Handshake,
-    title: "Dedicated Support",
+    title: "A Team That Stays With You",
     description:
-      "A responsive team that stays with you post-launch for updates, guidance, and continuous improvement.",
+      "Ongoing support, optimization, and consultation that continue improving your brand long after launch.",
+  },
+
+  {
+    icon: Globe,
+    title: "Global Experience, Local Understanding",
+    description:
+      "Trusted by businesses worldwide with international-quality work tailored to diverse markets and customer behavior.",
   },
 ];
 
@@ -56,7 +62,7 @@ export default function WhyChoseUs() {
         <div className="container">
           <ModuleTitle
             suppertitle="Why Choose Us"
-            title="**Why Choose Us**"
+            title="**Why 100+ Businesses Trust Next IT as Their Growth Partner**"
             ctaText="Get a Free Quote"
             variant="v2"
           />
