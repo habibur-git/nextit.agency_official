@@ -3,7 +3,7 @@
 import Button from "@/components/button/Button";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { IoLogoWhatsapp } from "react-icons/io";
+import { BsArrowRight } from "react-icons/bs";
 
 /* ------------------ Stats Data ------------------ */
 const STATS = [
@@ -102,9 +102,8 @@ export default function Hero() {
                 href="/work"
                 label="See Our Work"
                 variant="link"
-                icon={<IoLogoWhatsapp className="text-xl text-[#25D366]" />}
-                slideIconRotate={-30}
-                iconRotate={15}
+                icon={<BsArrowRight className="text-xl text-body" />}
+               
               />
             </div>
           </div>
