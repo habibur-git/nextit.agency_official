@@ -70,7 +70,7 @@ export default function WhyChoseUs() {
           <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-3">
             <article className="relative overflow-hidden rounded-3xl border border-white/10 p-7 lg:col-span-2 lg:row-span-2">
               <Image
-                src="/assets/img/team/group-work.webp"
+                src="/assets/img/team/group-work.avif"
                 alt="Why Choose Us"
                 fill
                 className="object-cover transition-all duration-1000 ease-in-out"
